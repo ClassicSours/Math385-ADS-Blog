@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Homes on Academic</title>
+    <title>Homes on Aaron&#39;s Statistics Blog</title>
     <link>/home/</link>
-    <description>Recent content in Homes on Academic</description>
+    <description>Recent content in Homes on Aaron&#39;s Statistics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
@@ -28,12 +28,12 @@
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>/home/about/</guid>
-      <description>Biography Lena Smith is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet.</description>
+      <description>Biography Aaron Shaffer is a Senior at California State University Chico Majoring in Computer Science and Minoring in Applied Statistics. My Programming language toolbox is C, C++, Python, R, HTML, CSS, Java.
+There will be ~8 or so big posts to this blog throughout the sememster. Maybe I&amp;rsquo;ll post some old projects and ones for other classes as well.</description>
     </item>
     
     <item>
-      <title>Selected Publications</title>
+      <title>Past Projects</title>
       <link>/home/publications_selected/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 -0700</pubDate>
       

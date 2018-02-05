@@ -1,4 +1,5 @@
 +++
+
 # About/Biography widget.
 widget = "about"
 active = true
@@ -10,31 +11,31 @@ weight = 5
 # List your academic interests.
 [interests]
   interests = [
-    "Artificial Intelligence",
-    "Computational Linguistics",
-    "Information Retrieval"
+    "Programming",
+    "Statistics",
+    "Gaming"
   ]
 
 # List your qualifications (such as academic degrees).
 [[education.courses]]
-  course = "PhD in Artificial Intelligence"
-  institution = "Stanford University"
-  year = 2012
+  course = "A.S. Computer Science"
+  institution = "Diablo Valley College"
+  year = 2015
 
 [[education.courses]]
-  course = "MEng in Artificial Intelligence"
-  institution = "Massachusetts Institute of Technology"
-  year = 2009
+  course = "B.S. Computer Science"
+  institution = "California State University Chico"
+  year = 2018
 
 [[education.courses]]
-  course = "BSc in Artificial Intelligence"
-  institution = "Massachusetts Institute of Technology"
-  year = 2008
- 
+  course = "Minor in Applied Statistics"
+  institution = "California State University, Chico"
+  year = 2018
+
 +++
 
 # Biography
 
-Lena Smith is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Aaron Shaffer is a Senior at California State University Chico Majoring in Computer Science and Minoring in Applied Statistics.  My Programming language toolbox is C, C++, Python, R, HTML, CSS, Java.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate. 
+There will be ~8 or so big posts to this blog throughout the sememster.  Maybe I'll post some old projects and ones for other classes as well.
