@@ -13,6 +13,18 @@
     
     
     <item>
+      <title>Make File in R</title>
+      <link>/post/make-for-r/</link>
+      <pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/make-for-r/</guid>
+      <description>This is the tutorial for my makefile for r, My makefile is as follows:
+all: gapminder gapminder: Rscript -e &amp;quot;knitr::knit(&#39;gapminder.Rmd&#39;);/ rmarkdown::render(&#39;gapminder.Rmd&#39;,&#39;html_document&#39;)&amp;quot; clean: rm -rf *.md rm -rf *.html  What this makefile does is call the knit package on my gapminder.Rmd file and then call the rmarkdown::render() function on my file to knit the file and render it to .html
+You can find the link to that html here!
+In order to format the page to look nice I lie a bit in how my code is represented to the viewer.</description>
+    </item>
+    
+    <item>
       <title>Academic: the website designer for Hugo</title>
       <link>/post/getting-started/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 -0700</pubDate>
@@ -22,17 +34,6 @@
 
 Key features:
  Easily manage various content including homepage, blog posts, publications, talks, and projects Extensible via color themes and widgets/plugins Write in Markdown for easy formatting and code highlighting, with LaTeX for mathematical expressions Social/academic network linking, Google Analytics, and Disqus comments Responsive and mobile friendly Simple and refreshing one page design Multilingual and easy to customize  Color Themes Academic is available in different color themes and font themes.</description>
-    </item>
-    
-    <item>
-      <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
-      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
     </item>
     
   </channel>
