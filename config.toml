@@ -170,7 +170,8 @@ defaultContentLanguageInSubdir = false
     'Manuscript',  # 3
     'Report',  # 4
     'Book',  # 5
-    'Book section'  # 6
+    'Book section',  # 6
+    'Homework' # 7
   ]
 
   # Configuration of talk pages.
@@ -248,10 +249,10 @@ defaultContentLanguageInSubdir = false
   url = "#about"
   weight = 1
 
-[[menu.main]]
-  name = "Publications"
-  url = "#publications_selected"
-  weight = 2
+# [[menu.main]]
+#   name = "Publications"
+#   url = "#publications_selected"
+#   weight = 2
 
 [[menu.main]]
   name = "Posts"
@@ -259,9 +260,9 @@ defaultContentLanguageInSubdir = false
   weight = 3
 
 [[menu.main]]
-  name = "Projects"
-  url = "#projects"
-  weight = 4
+   name = "Projects"
+   url = "#projects"
+   weight = 4
 
 # [[menu.main]]
 #   name = "Teaching"

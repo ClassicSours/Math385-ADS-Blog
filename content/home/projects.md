@@ -1,7 +1,7 @@
 +++
 # Projects widget.
 widget = "projects"
-active = false
+active = true
 date = "2016-04-20T00:00:00"
 
 title = "Projects"
@@ -33,11 +33,7 @@ filter_default = 0
   tag = "*"
 
 [[filter]]
-  name = "Deep Learning"
-  tag = ".deep-learning"
-
-[[filter]]
-  name = "Other"
-  tag = ".demo"
+  name = "Homework"
+  tag = ".homework"
 
 +++
