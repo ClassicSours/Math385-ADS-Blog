@@ -12,6 +12,7 @@ tags:
 header:
   caption: ''
   image: ''
+summary: "Tutorial/walk through on a make file for gapminder assignment"
 ---
 
 This is the tutorial for my makefile for r, My makefile is as follows:

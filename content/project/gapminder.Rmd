@@ -8,6 +8,7 @@ categories:
   - R
 tags: ["homework"]
 keep_md: true
+summary: "Using the gapminder data set, explore the question “How does life expectancy change over time for each country?” Automate your entire workflow including data acquisition as a separate R file."
 ---
 
 ```{r setup, include=FALSE}
