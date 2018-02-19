@@ -29,7 +29,7 @@ clean:
 ```
 What this makefile does is call the knit package on my `gapminder.Rmd` file and then call the `rmarkdown::render()` function on my file to knit the file and render it to `.html`
 
-You can find the link to that html [here!](./assignment1/gapminder.html)
+You can find the link to that html [here!](/project/gapminder/)
 
 
 In order to format the page to look nice I lie a bit in how my code is represented to the viewer.

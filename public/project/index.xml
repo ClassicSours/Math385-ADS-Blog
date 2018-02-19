@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>gapminder</title>
+      <link>/project/gapminder/</link>
+      <pubDate>Sun, 25 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/project/gapminder/</guid>
+      <description>Prompt   Using the gapminder data set, explore the question “How does life expectancy change over time for each country?”   Part 1. Read the Data  suppressMessages(library(magrittr)) suppressMessages(library(ggplot2)) suppressMessages(library(plotly)) suppressMessages(library(webshot)) gapminder &amp;lt;- read.csv(&amp;quot;../../data/gapminder-FiveYearData.csv&amp;quot;)  Part 2. Visualizing the Data  gapminder.gg &amp;lt;- ggplot(gapminder) + geom_line(aes(x = year, y = lifeExp, color = country), alpha = .85, stat = &amp;quot;smooth&amp;quot;, method = &amp;quot;loess&amp;quot;) + facet_grid(~continent, scales = &amp;quot;free&amp;quot;) + theme(legend.</description>
+    </item>
+    
+    <item>
       <title>homework2</title>
       <link>/project/homework2/</link>
       <pubDate>Sat, 17 Feb 2018 00:00:00 +0000</pubDate>

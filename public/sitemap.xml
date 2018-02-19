@@ -5,6 +5,15 @@
     
     <url>
     
+      <loc>/project/gapminder/</loc>
+      <lastmod>2018-02-25T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/project/</loc>
       <lastmod>2018-02-17T00:00:00-08:00</lastmod>
     </url>
@@ -144,7 +153,7 @@
     <url>
     
       <loc>/tags/homework/</loc>
-      <lastmod>2018-02-17T00:00:00+00:00</lastmod>
+      <lastmod>2018-02-25T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -184,7 +193,17 @@
     <url>
     
       <loc>/categories/r/</loc>
-      <lastmod>2018-02-10T00:00:00+00:00</lastmod>
+      <lastmod>2018-02-25T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/categories/r/</loc>
+      <lastmod>2018-02-25T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
