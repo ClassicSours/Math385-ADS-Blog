@@ -9,6 +9,7 @@ tags:
   - homework
   - plot
   - R Markdown
+summary: "ISLR Ch2 Exercises #1, #2, #4, #10"
 ---
 
 <h1>
