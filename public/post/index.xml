@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>ISLR Ch2</title>
+      <link>/post/islr_ch2/</link>
+      <pubDate>Mon, 26 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/islr_ch2/</guid>
+      <description>ISLR Ch2 Exercises: #1, #2, #4, #10   For each of parts (a) through (d), indicate whether we would generally expect the performance of a flexible statistical learning method to be better or worse than an inflexible method. Justify your answer.    The sample size n is extremely large, and the number of predictors p is small.    Because of the abundance of data n the flexible method will perform better than the inflexible method.</description>
+    </item>
+    
+    <item>
       <title>Make File in R</title>
       <link>/post/make-for-r/</link>
       <pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate>

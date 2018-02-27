@@ -21,25 +21,25 @@ summary: "ISLR Ch2 Exercises #1, #2, #4, #10"
 </h3>
 
 <h4> 
-  $(a)$ The sample size `n` is extremely large, and the number of predictors `p` is small.
+  (a) The sample size `n` is extremely large, and the number of predictors `p` is small.
 </h4>
 
 > Because of the abundance of data `n` the flexible method will perform better than the inflexible method.  This is because the inflexible method will be highly squewed by any outliers in the small sample which won't affect the inflexible model nearly as much.
 
 <h4> 
-  $(b)$ The number of predictors `p` is extremely large, and the number of observations `n` is small.
+  (b) The number of predictors `p` is extremely large, and the number of observations `n` is small.
 </h4>
 
 > Because of the large number of predictors `p` the inflexible method will perform better than the inflexible method.  This is because with so many predictors the flexible method will overfit on the small observations `n`.
 
 <h4>
-  $(c)$ The relationship between the predictors and response is highly non-linear.
+  (c) The relationship between the predictors and response is highly non-linear.
 </h4>
 
 > Because the flexible metod has more degrees of freedom than the inflexible method you can generally expect it to out perform the inflexible method.
 
 <h4>
-  $(d)$ The variance of the error terms, i.e. $\sigma^2$ = `Var( )`, is extremely high.
+  (d) The variance of the error terms, i.e. $\sigma^2$ = `Var( )`, is extremely high.
 </h4>
 
 > Since the $\sigma^2$ is so high the inflexible method will outperform the flexible method because it will mimic the large variance and increase the variance in the results that it predicts as well.
@@ -49,7 +49,7 @@ summary: "ISLR Ch2 Exercises #1, #2, #4, #10"
 </h3>
 
 <h4>
-  $(a)$ We collect a set of data on the top `500` firms in the US. For each firm we record `profit`, `number of employees`, `industry` and the `CEO salary`. We are interested in understanding which factors affect `CEO salary`. 
+  (a) We collect a set of data on the top `500` firms in the US. For each firm we record `profit`, `number of employees`, `industry` and the `CEO salary`. We are interested in understanding which factors affect `CEO salary`. 
 </h4>
 
 This is a `regression` model.  We are trying to `inference` `CEO salary`.
@@ -59,14 +59,14 @@ n <- 500
 p <- 3
 ```
 
-$P_1$ = `profit`, numeric
+P<sub>1</sub> = `profit`, numeric
 
-$P_2$ = `number of employees`, numeric
+P<sub>2</sub> = `number of employees`, numeric
 
-$P_3$ = `industry`, categorical
+P<sub>3</sub> = `industry`, categorical
 
 <h4> 
-  $(b)$ We are considering launching a new product and wish to know whether it will be a `success` or a `failure`. We collect data on `20` similar products that were previously launched. For each product we have recorded whether it was a `success` or `failure`, `price charged for the product`, `marketing budget`, `competition price`, and `ten other variables`.
+  (b) We are considering launching a new product and wish to know whether it will be a `success` or a `failure`. We collect data on `20` similar products that were previously launched. For each product we have recorded whether it was a `success` or `failure`, `price charged for the product`, `marketing budget`, `competition price`, and `ten other variables`.
 </h4>
 
 Since the outcome of our model is a `success = (1)` or a `failure = (0)` we need to use a `classification` model that tells us either `success` or `failure` in order to make a `prediction` on how our product launch will go.
@@ -76,16 +76,16 @@ n <- 20
 p <- 13
 ```
 
-$P_1$ = `price`, numeric
+P<sub>1</sub> = `price`, numeric
 
-$P_2$ = `marketing budget`, numeric
+P<sub>2</sub> = `marketing budget`, numeric
 
-$P_3$ = `competition price`, numeric
+P<sub>3</sub> = `competition price`, numeric
 
-$P_4$ -> $P_{13}$ `10 other variables`, mystery variables
+P<sub>4</sub> -> P<sub>13</sub> `10 other variables`, mystery variables
 
 <h4>
-  $(c)$ We are interested in predicting the `% change in the USD/Euro exchange rate` in relation to the `weekly changes in the world stock markets`. Hence we collect weekly data for all of 2012. For each week we record the `% change in the USD/Euro`, the `% change in the US market`, the `% change in the British market`, and the `% change in the German market`.
+  (c) We are interested in predicting the `% change in the USD/Euro exchange rate` in relation to the `weekly changes in the world stock markets`. Hence we collect weekly data for all of 2012. For each week we record the `% change in the USD/Euro`, the `% change in the US market`, the `% change in the British market`, and the `% change in the German market`.
 </h4>
 
 Since the outcome of our model isn't a yes or no variable this is another `regresssion` model in which we are trying to make a `prediction` on `% change in the USD/Euro exchange rate`. 
@@ -95,18 +95,18 @@ n <- 52 // weeks in a year
 p <- 3
 ```
 
-$P_1$ = `% change in the US market`, numeric
+P<sub>1</sub> = `% change in the US market`, numeric
 
-$P_2$ = `% change in the British market`, numeric
+P<sub>2</sub> = `% change in the British market`, numeric
 
-$P_3$ = `% change in the German market`, numeric
+P<sub>3</sub> = `% change in the German market`, numeric
 
 <h3>
   4. You will now think of some real-life applications for statistical learning.
 </h3>
 
 <h4>
-  $(a)$ Describe three real-life applications in which classification might be useful. Describe the response, as well as the predictors. Is the goal of each application inference or prediction? Explain your answer.
+  (a) Describe three real-life applications in which classification might be useful. Describe the response, as well as the predictors. Is the goal of each application inference or prediction? Explain your answer.
 </h4>
 
 1. Classify if a picture/set of observations is a cat or a dog.  The response is a binary outcome ie. something along the lines of `success = dog` `failure = cat`.  If you were to approach this with a basic model then information such as `height`, `weight`, `color`, `length` would be important predictors for determining if something was a cat or a dog.  The goal of this application would be to `infer` if the observations were of a cat or a dog.
@@ -116,7 +116,7 @@ $P_3$ = `% change in the German market`, numeric
 3. Clasification of a `number` or `letter` from written text is a very important application of classification in the real world.  The response would be a `number 0-9` or letter `a-zA-Z` from a piece of written text.  predictors would be some way of taking that written text and converting it into input, such as overlaying a grid over the character and using that information to determine what is within the grid.  This is an `inference` model.
 
 <h4>
-  $(b)$ Describe three real-life applications in which regression might be useful. Describe the response, as well as the predictors. Is the goal of each application inference or prediction? Explain your answer.
+  (b) Describe three real-life applications in which regression might be useful. Describe the response, as well as the predictors. Is the goal of each application inference or prediction? Explain your answer.
 </h4>
 
 1. Determine how expensive a car is based on its features.  This might be useful if you were an auto maker and you wanted to make a new car and you had to know a competitive price point to list your car at.  You would take observations such as `price`, `number of doors`, `mpg`, `sunroof`, `gps`, `etc.` to build a model to `predict` a good price point to sell your new car at, as well as what features in a car make it worth the most money.
@@ -136,7 +136,7 @@ $P_3$ = `% change in the German market`, numeric
     (3.e)  Following successful adoption the new pet owner is very excited and proud of what they did in finding their new best friend and then encourages their friends to go to the website and take the survey and more dogs(and cats) find homes.
 
 <h4>
-  $(c)$ Describe three real-life applications in which cluster analysis might be useful.
+  (c) Describe three real-life applications in which cluster analysis might be useful.
 </h4>
 
 
@@ -147,10 +147,10 @@ $P_3$ = `% change in the German market`, numeric
 3. Cluster a video game player into an RPG Player, FPS Player, PvPer, PvEr etc based on their gaming habits and what kind of titles they've enjoyed in the past.  The goal of this model would be prediction and it could be used to suggest new titles that players might like to try out in the future.
 
 <h3>
-  10. This exercise involves the $Boston$ housing data set.
+  10. This exercise involves the `Boston` housing data set.
 </h3>
 
-<h4> $(a)$ To begin, load in the $Boston$ data set. The Boston data set is part of the `MASS` library in R . </h4>
+<h4> (a) To begin, load in the `Boston` data set. The Boston data set is part of the `MASS` library in R . </h4>
 
 
 ```{r}
@@ -170,7 +170,7 @@ What do the rows and columns represent?
 
 Each row represents a new set of observations.  And Each column represents a "p".
 
-<h4> $(b)$ Make some pairwise scatterpltos of the predictors (columns) in the dataset.  Describe your findings </h4>
+<h4> (b) Make some pairwise scatterpltos of the predictors (columns) in the dataset.  Describe your findings </h4>
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE}
 library(dplyr)
@@ -208,7 +208,7 @@ subplot(gg.rm.indus, gg.age.lstat, gg.crim.dis, gg.black.medv,
 (2,2). There appears to be some kind of relation ship going on between `black`:"1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town." And `medv`: "median value of owner-occupied homes in \$1000s."
 
 <h4>
-  $(c)$ Are any of the predictors associated with per capita crime rate? If so, explain the relationship.
+  (c) Are any of the predictors associated with per capita crime rate? If so, explain the relationship.
 </h4>
 
 <center>
@@ -238,7 +238,7 @@ grid.arrange(gg.r.c,gg.t.c,gg.l.c,gg.n.c,gg.i.c,gg.a.c,gg.p.c,nrow = 1)
 
 While some correlations were calculated some of the extremely high crime-per-capita ratios are likely throwing off the correlation by quite a lot.
 <h4>
-  $(d)$ Do any of the suburbs of Boston appear to have particularly high crime rates? Tax rates? Pupil-teacher ratios? Comment on the range of each predictor.
+  (d) Do any of the suburbs of Boston appear to have particularly high crime rates? Tax rates? Pupil-teacher ratios? Comment on the range of each predictor.
 </h4>
 
 `crim`: "per capita crime rate by town."
@@ -294,7 +294,7 @@ gg.ptratio
 There are two towns with a pupil to teacher ratio of around ~22.5 Students per teacher!  There are also a ton of towns around the ~18-20 range and just 3 towns with that fall into the ~12.0 students per teacher ratio.
 
 <h4>
-  $(e)$ How many of the suburbs in this data set bound the Charles river? `range()`
+  (e) How many of the suburbs in this data set bound the Charles river? `range()`
 </h4>
 
 ```{r}
@@ -304,7 +304,7 @@ sum(Boston$chas)
 There are 35 suburbs bounded by the Charles river in the data set.
 
 <h4> 
-  $(f)$ What is the median pupil-teacher ratio among the towns in this data set?
+  (f) What is the median pupil-teacher ratio among the towns in this data set?
 </h4>
 ```{r}
 Boston %$% median(ptratio)
@@ -313,7 +313,7 @@ Boston %$% median(ptratio)
 The median pupil-teacher ratio among the towns in the data set is 19.05.  
 
 <h4>
-  $(g)$ Which suburb of Boston has lowest median value of owner occupied homes? What are the values of the other predictors for that suburb, and how do those values compare to the overall ranges for those predictors? Comment on your findings.
+  (g) Which suburb of Boston has lowest median value of owner occupied homes? What are the values of the other predictors for that suburb, and how do those values compare to the overall ranges for those predictors? Comment on your findings.
 </h4>
 
 ```{r}
@@ -323,7 +323,7 @@ pander::pander(Boston[suburbs,])
 
 
 <h4>
-  $(h)$ In this data set, how many of the suburbs average more than seven rooms per dwelling? More than eight rooms per dwelling? Comment on the suburbs that average more than eight rooms per dwelling
+  (h) In this data set, how many of the suburbs average more than seven rooms per dwelling? More than eight rooms per dwelling? Comment on the suburbs that average more than eight rooms per dwelling
 </h4>
 
 ```{r}
@@ -341,5 +341,3 @@ gg.ptratio <- ggplot(aes(x = rm, fill = as.factor(..x..)), data = Boston.greater
 gg.ptratio
 ```
 </center>
-
-```

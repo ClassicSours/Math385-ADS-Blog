@@ -5,6 +5,15 @@
     
     <url>
     
+      <loc>/post/islr_ch2/</loc>
+      <lastmod>2018-02-26T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/project/gapminder/</loc>
       <lastmod>2018-02-25T00:00:00+00:00</lastmod>
     </url>
@@ -153,7 +162,7 @@
     <url>
     
       <loc>/tags/homework/</loc>
-      <lastmod>2018-02-25T00:00:00+00:00</lastmod>
+      <lastmod>2018-02-26T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -173,7 +182,7 @@
     <url>
     
       <loc>/tags/plot/</loc>
-      <lastmod>2018-02-10T00:00:00+00:00</lastmod>
+      <lastmod>2018-02-26T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -213,7 +222,7 @@
     <url>
     
       <loc>/tags/r-markdown/</loc>
-      <lastmod>2018-02-10T00:00:00+00:00</lastmod>
+      <lastmod>2018-02-26T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
