@@ -39,10 +39,10 @@ summary: "ISLR Ch2 Exercises #1, #2, #4, #10"
 > Because the flexible metod has more degrees of freedom than the inflexible method you can generally expect it to out perform the inflexible method.
 
 <h4>
-  (d) The variance of the error terms, i.e. $\sigma^2$ = `Var( )`, is extremely high.
+  (d) The variance of the error terms, i.e. σ<sup>2</sup> = `Var( )`, is extremely high.
 </h4>
 
-> Since the $\sigma^2$ is so high the inflexible method will outperform the flexible method because it will mimic the large variance and increase the variance in the results that it predicts as well.
+> Since the σ<sup>2</sup> is so high the inflexible method will outperform the flexible method because it will mimic the large variance and increase the variance in the results that it predicts as well.
 
 <h3>
   2. Explain whether each scenario is a `classification` or `regression` problem, and indicate whether we are most interested in `inference` or `prediction`. Finally, provide `n` and `p`
@@ -170,7 +170,7 @@ What do the rows and columns represent?
 
 Each row represents a new set of observations.  And Each column represents a "p".
 
-<h4> (b) Make some pairwise scatterpltos of the predictors (columns) in the dataset.  Describe your findings </h4>
+<h4> (b) Make some pairwise scatterplots of the predictors (columns) in the dataset.  Describe your findings </h4>
 
 ```{r, echo = FALSE, message = FALSE, warning=FALSE}
 library(dplyr)
@@ -245,12 +245,13 @@ While some correlations were calculated some of the extremely high crime-per-cap
 
 <center>
 ```{r, echo = FALSE, fig.width = 7, warning = FALSE}
-gg.crim <- ggplot(aes(x = crim, fill = as.factor(..x..)), data = Boston) + 
+gg.crim <- ggplot(aes(x = crim, fill = ..x..), data = Boston) + 
   geom_histogram(binwidth = 5) + 
-  stat_bin(binwidth = 5, geom="text", aes(label = ifelse(..count..,..count..,NA)), vjust = -.5) +
+  stat_bin(binwidth = 5, geom="text", 
+           aes(label = ifelse(..count..,..count..,NA)), vjust = -.5) +
   theme_classic() + 
-  scale_fill_discrete(name = "crim")  +
-  guides(fill = guide_legend(ncol = 3))
+  scale_fill_continuous(name = "crim")  +
+  guides(fill = guide_legend(ncol = 2))
 
 
 gg.crim
@@ -263,12 +264,12 @@ Yes,  There are 3 towns with a per capita crime rate over 70, and one of those h
 
 <center>
 ```{r, echo = FALSE, fig.width = 7}
-gg.tax <- ggplot(aes(x = tax, fill = as.factor(..x..)), data = Boston) + 
+gg.tax <- ggplot(aes(x = tax, fill = ..x..), data = Boston) + 
   geom_histogram(binwidth = 30) + 
   stat_bin(binwidth = 30, geom="text", aes(label = ..count..), vjust = -.5) + 
   theme_classic() + 
-  scale_fill_discrete(name = "tax") +
-  guides(fill = guide_legend(ncol = 3))
+  scale_fill_continuous(name = "tax") +
+  guides(fill = guide_legend(ncol = 2))
 
 gg.tax
 ```
