@@ -18,7 +18,7 @@
       <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/islr_ch3/</guid>
-      <description>ISLR Ch3 Exercises #4, #15   I collect a set of data (n = 100 observations) containing a single predictor and a quantitative response. I then fit a linear regression model to the data, as well as a separate cubic regression, i.e. \(Y = \beta_{0}+\beta_{1}X+\beta_{2}X^{2}+\beta_{3}X^{3}+\epsilon\).    \((a)\) Suppose that the true relationship between X and Y is linear, i.e. \(Y = \beta_0 + \beta_{1}X + \epsilon\). Consider the training residual sum of squares (RSS) for the linear regression, and also the training RSS for the cubic regression.</description>
+      <description>ISLR Ch3 Exercises #4, #15   I collect a set of data (n = 100 observations) containing a single predictor and a quantitative response. I then fit a linear regression model to the data, as well as a separate cubic regression, i.e. \(Y = \beta_{0}+\beta_{1}X+\beta_{2}X^{2}+\beta_{3}X^{3}+\epsilon\).    \((a)\) Suppose that the true relationship between X and Y is linear, i.e. \(Y = \beta_0 + \beta_{1}X + \epsilon\).</description>
     </item>
     
     <item>

@@ -17,7 +17,7 @@
       
     
   
-  <meta name="description" content="ISLR Ch3 Exercises #4, #15   I collect a set of data (n = 100 observations) containing a single predictor and a quantitative response. I then fit a linear regression model to the data, as well as a separate cubic regression, i.e. \(Y = \beta_{0}&#43;\beta_{1}X&#43;\beta_{2}X^{2}&#43;\beta_{3}X^{3}&#43;\epsilon\).    \((a)\) Suppose that the true relationship between X and Y is linear, i.e. \(Y = \beta_0 &#43; \beta_{1}X &#43; \epsilon\). Consider the training residual sum of squares (RSS) for the linear regression, and also the training RSS for the cubic regression.">
+  <meta name="description" content="ISLR Ch3 Exercises #4, #15   I collect a set of data (n = 100 observations) containing a single predictor and a quantitative response. I then fit a linear regression model to the data, as well as a separate cubic regression, i.e. \(Y = \beta_{0}&#43;\beta_{1}X&#43;\beta_{2}X^{2}&#43;\beta_{3}X^{3}&#43;\epsilon\).    \((a)\) Suppose that the true relationship between X and Y is linear, i.e. \(Y = \beta_0 &#43; \beta_{1}X &#43; \epsilon\).">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/islr_ch3/">
@@ -81,7 +81,7 @@
   <meta property="og:site_name" content="Aaron&#39;s Statistics Blog">
   <meta property="og:url" content="/post/islr_ch3/">
   <meta property="og:title" content="ISLR Ch 3 | Aaron&#39;s Statistics Blog">
-  <meta property="og:description" content="ISLR Ch3 Exercises #4, #15   I collect a set of data (n = 100 observations) containing a single predictor and a quantitative response. I then fit a linear regression model to the data, as well as a separate cubic regression, i.e. \(Y = \beta_{0}&#43;\beta_{1}X&#43;\beta_{2}X^{2}&#43;\beta_{3}X^{3}&#43;\epsilon\).    \((a)\) Suppose that the true relationship between X and Y is linear, i.e. \(Y = \beta_0 &#43; \beta_{1}X &#43; \epsilon\). Consider the training residual sum of squares (RSS) for the linear regression, and also the training RSS for the cubic regression.">
+  <meta property="og:description" content="ISLR Ch3 Exercises #4, #15   I collect a set of data (n = 100 observations) containing a single predictor and a quantitative response. I then fit a linear regression model to the data, as well as a separate cubic regression, i.e. \(Y = \beta_{0}&#43;\beta_{1}X&#43;\beta_{2}X^{2}&#43;\beta_{3}X^{3}&#43;\epsilon\).    \((a)\) Suppose that the true relationship between X and Y is linear, i.e. \(Y = \beta_0 &#43; \beta_{1}X &#43; \epsilon\).">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-03-05T00:00:00&#43;00:00">
@@ -231,7 +231,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    3 min read
+    10 min read
   </span>
   
 
@@ -303,7 +303,17 @@
 
 
     <div class="article-style" itemprop="articleBody">
-      <h1>
+      <script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/plotly-binding/plotly.js"></script>
+<script src="/rmarkdown-libs/typedarray/typedarray.min.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="/rmarkdown-libs/plotlyjs/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/plotlyjs/plotly-latest.min.js"></script>
+
+
+<h1>
 ISLR Ch3 Exercises #4, #15
 </h1>
 <h3>
@@ -344,17 +354,901 @@ ISLR Ch3 Exercises #4, #15
 <h4>
 <span class="math inline">\((a)\)</span> For each predictor, fit a simple linear regression model to predict the response. Describe your results. In which of the models is there a statistically significant association between the predictor and the response? Create some plots to back up your assertions.
 </h4>
+<pre class="r"><code>library(magrittr)
+lm.age     &lt;- Boston %$% lm(crim~age)
+lm.black   &lt;- Boston %$% lm(crim~black)
+lm.chas    &lt;- Boston %$% lm(crim~chas)
+lm.dis     &lt;- Boston %$% lm(crim~dis)
+lm.indus   &lt;- Boston %$% lm(crim~indus)
+lm.lstat   &lt;- Boston %$% lm(crim~lstat)
+lm.medv    &lt;- Boston %$% lm(crim~medv)
+lm.nox     &lt;- Boston %$% lm(crim~nox)
+lm.ptratio &lt;- Boston %$% lm(crim~ptratio)
+lm.rad     &lt;- Boston %$% lm(crim~rad)
+lm.rm      &lt;- Boston %$% lm(crim~rm)
+lm.tax     &lt;- Boston %$% lm(crim~tax)
+lm.zn      &lt;- Boston %$% lm(crim~zn)</code></pre>
+<blockquote>
+<p>the following variables had a statistically signifigant associate between <code>crim</code> and themselves <code>age</code>, <code>black</code>, <code>dis</code>, <code>lstat</code>, <code>medv</code>, <code>ptratio</code>, <code>rad</code>, <code>rm</code>, <code>tax</code>, <code>zn</code></p>
+</blockquote>
+<p><img src="/post/islr_ch3_files/figure-html/unnamed-chunk-3-1.png" width="768" style="display: block; margin: auto;" /></p>
 <h4>
 <span class="math inline">\((b)\)</span> Fit a multiple regression model to predict the response using all of the predictors. Describe your results. For which predictors can we reject the null hypothesis <span class="math inline">\(H_0\)</span> : <span class="math inline">\(\beta_j = 0\)</span>?
 </h4>
+<pre class="r"><code>mult.reg.all &lt;- lm(crim~., data=Boston)
+pander(anova(mult.reg.all))</code></pre>
+<table style="width:86%;">
+<caption>Analysis of Variance Table</caption>
+<colgroup>
+<col width="22%" />
+<col width="8%" />
+<col width="12%" />
+<col width="13%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Df</th>
+<th align="center">Sum Sq</th>
+<th align="center">Mean Sq</th>
+<th align="center">F value</th>
+<th align="center">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>zn</strong></td>
+<td align="center">1</td>
+<td align="center">1502</td>
+<td align="center">1502</td>
+<td align="center">36.21</td>
+<td align="center">3.457e-09</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>indus</strong></td>
+<td align="center">1</td>
+<td align="center">4689</td>
+<td align="center">4689</td>
+<td align="center">113.1</td>
+<td align="center">6.469e-24</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>chas</strong></td>
+<td align="center">1</td>
+<td align="center">247.8</td>
+<td align="center">247.8</td>
+<td align="center">5.976</td>
+<td align="center">0.01485</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>nox</strong></td>
+<td align="center">1</td>
+<td align="center">1271</td>
+<td align="center">1271</td>
+<td align="center">30.65</td>
+<td align="center">5.041e-08</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>rm</strong></td>
+<td align="center">1</td>
+<td align="center">138.5</td>
+<td align="center">138.5</td>
+<td align="center">3.341</td>
+<td align="center">0.0682</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>age</strong></td>
+<td align="center">1</td>
+<td align="center">165.5</td>
+<td align="center">165.5</td>
+<td align="center">3.992</td>
+<td align="center">0.04628</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>dis</strong></td>
+<td align="center">1</td>
+<td align="center">300.1</td>
+<td align="center">300.1</td>
+<td align="center">7.237</td>
+<td align="center">0.007383</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>rad</strong></td>
+<td align="center">1</td>
+<td align="center">7238</td>
+<td align="center">7238</td>
+<td align="center">174.6</td>
+<td align="center">2.519e-34</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>tax</strong></td>
+<td align="center">1</td>
+<td align="center">3.311</td>
+<td align="center">3.311</td>
+<td align="center">0.07984</td>
+<td align="center">0.7776</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>ptratio</strong></td>
+<td align="center">1</td>
+<td align="center">7.281</td>
+<td align="center">7.281</td>
+<td align="center">0.1756</td>
+<td align="center">0.6754</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>black</strong></td>
+<td align="center">1</td>
+<td align="center">455.3</td>
+<td align="center">455.3</td>
+<td align="center">10.98</td>
+<td align="center">0.000989</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>lstat</strong></td>
+<td align="center">1</td>
+<td align="center">497.7</td>
+<td align="center">497.7</td>
+<td align="center">12</td>
+<td align="center">0.0005772</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>medv</strong></td>
+<td align="center">1</td>
+<td align="center">447.9</td>
+<td align="center">447.9</td>
+<td align="center">10.8</td>
+<td align="center">0.001087</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Residuals</strong></td>
+<td align="center">492</td>
+<td align="center">20400</td>
+<td align="center">41.46</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>we can drop the following predictors, <code>tax</code>, <code>ptratio</code>. <code>rm</code> is almost able to be rejected. Next <code>chas</code> and <code>age</code> are on the chopping block. Lastly <code>age</code> and <code>medv</code> also don’t have *** signifigance</p>
+</blockquote>
 <h4>
 <span class="math inline">\((c)\)</span> How do your results from <span class="math inline">\((a)\)</span> compare to your results from <span class="math inline">\((b)\)</span>? Create a plot displaying the univariate regression coefficients from <span class="math inline">\((a)\)</span> on the <code>x-axis</code>, and the multiple regression coefficients from <span class="math inline">\((b)\)</span> on the <code>y-axis</code>. That is, each predictor is displayed as a single point in the plot. Its coefficient in a simple linear regression model is shown on the <code>x-axis</code>, and its coefficient estimate in the multiple linear regression model is shown on the <code>y-axis</code>.
 </h4>
+<center>
+<div id="8d32c0672a3" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="8d32c0672a3">{"x":{"data":[{"x":[-0.073934977404123,0.509776331104228,-1.89277655080378,31.2485312011229,-2.68405122411395,0.107786227139533,-1.5509016824101,0.617910927327201,0.0297422528227653,1.15198278707059,-0.0362796405673308,0.548804782062398,-0.363159922257603],"y":[0.0448552146700317,-0.0638548235877007,-0.749133610510599,-10.3135349120667,0.430130505864046,0.00145164343618213,-0.987175725502888,0.588208591473492,-0.00378001638485914,-0.271080558472251,-0.00753750488849206,0.1262113764595,-0.198886821265619],"text":["uni.reg.coef: -0.07393498<br />mult.reg.coef:   0.044855215<br />predictor: zn","uni.reg.coef:  0.50977633<br />mult.reg.coef:  -0.063854824<br />predictor: indus","uni.reg.coef: -1.89277655<br />mult.reg.coef:  -0.749133611<br />predictor: chas","uni.reg.coef: 31.24853120<br />mult.reg.coef: -10.313534912<br />predictor: nox","uni.reg.coef: -2.68405122<br />mult.reg.coef:   0.430130506<br />predictor: rm","uni.reg.coef:  0.10778623<br />mult.reg.coef:   0.001451643<br />predictor: age","uni.reg.coef: -1.55090168<br />mult.reg.coef:  -0.987175726<br />predictor: dis","uni.reg.coef:  0.61791093<br />mult.reg.coef:   0.588208591<br />predictor: rad","uni.reg.coef:  0.02974225<br />mult.reg.coef:  -0.003780016<br />predictor: tax","uni.reg.coef:  1.15198279<br />mult.reg.coef:  -0.271080558<br />predictor: ptratio","uni.reg.coef: -0.03627964<br />mult.reg.coef:  -0.007537505<br />predictor: black","uni.reg.coef:  0.54880478<br />mult.reg.coef:   0.126211376<br />predictor: lstat","uni.reg.coef: -0.36315992<br />mult.reg.coef:  -0.198886821<br />predictor: medv"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle-open","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":54.7945205479452},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"type":"linear","autorange":false,"range":[-4.3806803453758,32.9451603223848],"tickmode":"array","ticktext":["0","10","20","30"],"tickvals":[0,10,20,30],"categoryorder":"array","categoryarray":["0","10","20","30"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":"uni.reg.coef","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"type":"linear","autorange":false,"range":[-10.8586220872437,1.1332957666505],"tickmode":"array","ticktext":["-10.0","-7.5","-5.0","-2.5","0.0"],"tickvals":[-10,-7.5,-5,-2.5,0],"categoryorder":"array","categoryarray":["-10.0","-7.5","-5.0","-2.5","0.0"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":"mult.reg.coef","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"source":"A","attrs":{"8d334a9f1c1":{"x":{},"y":{},"label":{},"type":"scatter"}},"cur_data":"8d334a9f1c1","visdat":{"8d334a9f1c1":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1}},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":{"render":[{"code":"function(el, x) { var ctConfig = crosstalk.var('plotlyCrosstalkOpts').set({\"on\":\"plotly_click\",\"persistent\":false,\"dynamic\":false,\"selectize\":false,\"opacityDim\":0.2,\"selected\":{\"opacity\":1}}); }","data":null}]}}</script>
+</center>
+<blockquote>
+<p>from the plot you can see that <code>nox</code> is varies quite a lot from the <code>univariate regression coefficients</code> {<span class="math inline">\(31.25\)</span>} to the <code>multivariate regression coefficients</code> {<span class="math inline">\(-10.32\)</span>}</p>
+</blockquote>
 <h4>
 <ol start="4" style="list-style-type: lower-alpha">
 <li>Is there evidence of non-linear association between any of the predictors and the response? To answer this question, for each predictor X, fit a model of the form <span class="math inline">\(Y = \beta_{0} + \beta_{1}{X} + \beta_{2}{X}^{2} + \beta_{3}{X}^{3} + \epsilon\)</span>.
 </h4></li>
 </ol>
+<p><img src="/post/islr_ch3_files/figure-html/unnamed-chunk-6-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>The colors represent how far apart two <code>predictors</code> are from eachother. For example when <code>lstat</code> is high <code>medv</code> is low. And when <code>rad</code> is high <code>tax</code> is also high. The more red something is the more they differ, and the more green something is the more they are simmilar. Yellow indicates that there is almost no correlation between the two variables.</p>
+<h5>
+<span class="math inline">\(age.\)</span>
+</h5>
+<pre class="r"><code>lm.age.d &lt;- Boston %$% lm(crim~poly(age,3))
+pander(summary(lm.age.d)$coefficients)</code></pre>
+<table style="width:90%;">
+<colgroup>
+<col width="27%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.614</td>
+<td align="center">0.3485</td>
+<td align="center">10.37</td>
+<td align="center">5.919e-23</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(age, 3)1</strong></td>
+<td align="center">68.18</td>
+<td align="center">7.84</td>
+<td align="center">8.697</td>
+<td align="center">4.879e-17</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>poly(age, 3)2</strong></td>
+<td align="center">37.48</td>
+<td align="center">7.84</td>
+<td align="center">4.781</td>
+<td align="center">2.291e-06</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(age, 3)3</strong></td>
+<td align="center">21.35</td>
+<td align="center">7.84</td>
+<td align="center">2.724</td>
+<td align="center">0.00668</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>the cubic polynomial is not statistically signifigant</p>
+</blockquote>
+<h5>
+<span class="math inline">\(black.\)</span>
+</h5>
+<pre class="r"><code>lm.black.d &lt;- Boston %$% lm(crim~poly(black,3))
+pander(summary(lm.black.d)$coefficients)</code></pre>
+<table style="width:92%;">
+<colgroup>
+<col width="30%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.614</td>
+<td align="center">0.3536</td>
+<td align="center">10.22</td>
+<td align="center">2.14e-22</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(black, 3)1</strong></td>
+<td align="center">-74.43</td>
+<td align="center">7.955</td>
+<td align="center">-9.357</td>
+<td align="center">2.73e-19</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>poly(black, 3)2</strong></td>
+<td align="center">5.926</td>
+<td align="center">7.955</td>
+<td align="center">0.745</td>
+<td align="center">0.4566</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(black, 3)3</strong></td>
+<td align="center">-4.835</td>
+<td align="center">7.955</td>
+<td align="center">-0.6078</td>
+<td align="center">0.5436</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>the cubic coefficient is not statistically signifigant</p>
+</blockquote>
+<h5>
+<span class="math inline">\(chas.\)</span>
+</h5>
+<pre class="r"><code>lm.chas.d &lt;- Boston %$% lm(crim~poly(chas,1))
+pander(summary(lm.chas.d)$coefficients)</code></pre>
+<table style="width:90%;">
+<colgroup>
+<col width="27%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.614</td>
+<td align="center">0.3822</td>
+<td align="center">9.455</td>
+<td align="center">1.216e-19</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(chas, 1)</strong></td>
+<td align="center">-10.8</td>
+<td align="center">8.597</td>
+<td align="center">-1.257</td>
+<td align="center">0.2094</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>can only be evaulated to one degree because <code>chas</code> is a boolean variable (1’s and 0’s) and it is not statistically signifigant</p>
+</blockquote>
+<h5>
+<span class="math inline">\(dis.\)</span>
+</h5>
+<pre class="r"><code>lm.dis.d &lt;- Boston %$% lm(crim~poly(dis,3))
+pander(summary(lm.dis.d)$coefficients)</code></pre>
+<table style="width:90%;">
+<colgroup>
+<col width="27%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.614</td>
+<td align="center">0.3259</td>
+<td align="center">11.09</td>
+<td align="center">1.06e-25</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(dis, 3)1</strong></td>
+<td align="center">-73.39</td>
+<td align="center">7.331</td>
+<td align="center">-10.01</td>
+<td align="center">1.253e-21</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>poly(dis, 3)2</strong></td>
+<td align="center">56.37</td>
+<td align="center">7.331</td>
+<td align="center">7.689</td>
+<td align="center">7.87e-14</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(dis, 3)3</strong></td>
+<td align="center">-42.62</td>
+<td align="center">7.331</td>
+<td align="center">-5.814</td>
+<td align="center">1.089e-08</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>all three polynomials are statistically signifigant</p>
+</blockquote>
+<h5>
+<span class="math inline">\(indus.\)</span>
+</h5>
+<pre class="r"><code>lm.indus.d &lt;- Boston %$% lm(crim~poly(indus,3))
+pander(summary(lm.indus.d)$coefficients)</code></pre>
+<table style="width:93%;">
+<colgroup>
+<col width="30%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.614</td>
+<td align="center">0.33</td>
+<td align="center">10.95</td>
+<td align="center">3.606e-25</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(indus, 3)1</strong></td>
+<td align="center">78.59</td>
+<td align="center">7.423</td>
+<td align="center">10.59</td>
+<td align="center">8.854e-24</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>poly(indus, 3)2</strong></td>
+<td align="center">-24.39</td>
+<td align="center">7.423</td>
+<td align="center">-3.286</td>
+<td align="center">0.001086</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(indus, 3)3</strong></td>
+<td align="center">-54.13</td>
+<td align="center">7.423</td>
+<td align="center">-7.292</td>
+<td align="center">1.196e-12</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>the square polynomial is not statistically signifigant</p>
+</blockquote>
+<h5>
+<span class="math inline">\(lstat.\)</span>
+</h5>
+<pre class="r"><code>lm.lstat.d &lt;- Boston %$% lm(crim~poly(lstat,3))
+pander(summary(lm.lstat.d)$coefficients)</code></pre>
+<table style="width:93%;">
+<colgroup>
+<col width="30%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.614</td>
+<td align="center">0.3392</td>
+<td align="center">10.65</td>
+<td align="center">4.939e-24</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(lstat, 3)1</strong></td>
+<td align="center">88.07</td>
+<td align="center">7.629</td>
+<td align="center">11.54</td>
+<td align="center">1.678e-27</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>poly(lstat, 3)2</strong></td>
+<td align="center">15.89</td>
+<td align="center">7.629</td>
+<td align="center">2.082</td>
+<td align="center">0.0378</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(lstat, 3)3</strong></td>
+<td align="center">-11.57</td>
+<td align="center">7.629</td>
+<td align="center">-1.517</td>
+<td align="center">0.1299</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>the square and cubic polynomials are not statistically signifigant</p>
+</blockquote>
+<h5>
+<span class="math inline">\(medv.\)</span>
+</h5>
+<pre class="r"><code>lm.medv.d &lt;- Boston %$% lm(crim~poly(medv,3))
+pander(summary(lm.medv.d)$coefficients)</code></pre>
+<table style="width:92%;">
+<colgroup>
+<col width="29%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.614</td>
+<td align="center">0.292</td>
+<td align="center">12.37</td>
+<td align="center">7.024e-31</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(medv, 3)1</strong></td>
+<td align="center">-75.06</td>
+<td align="center">6.569</td>
+<td align="center">-11.43</td>
+<td align="center">4.931e-27</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>poly(medv, 3)2</strong></td>
+<td align="center">88.09</td>
+<td align="center">6.569</td>
+<td align="center">13.41</td>
+<td align="center">2.929e-35</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(medv, 3)3</strong></td>
+<td align="center">-48.03</td>
+<td align="center">6.569</td>
+<td align="center">-7.312</td>
+<td align="center">1.047e-12</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>all three polynomials are statistically signifigant</p>
+</blockquote>
+<h5>
+<span class="math inline">\(nox.\)</span>
+</h5>
+<pre class="r"><code>lm.nox.d &lt;- Boston %$% lm(crim~poly(nox,3))
+pander(summary(lm.nox.d)$coefficients)</code></pre>
+<table style="width:90%;">
+<colgroup>
+<col width="27%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.614</td>
+<td align="center">0.3216</td>
+<td align="center">11.24</td>
+<td align="center">2.743e-26</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(nox, 3)1</strong></td>
+<td align="center">81.37</td>
+<td align="center">7.234</td>
+<td align="center">11.25</td>
+<td align="center">2.457e-26</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>poly(nox, 3)2</strong></td>
+<td align="center">-28.83</td>
+<td align="center">7.234</td>
+<td align="center">-3.985</td>
+<td align="center">7.737e-05</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(nox, 3)3</strong></td>
+<td align="center">-60.36</td>
+<td align="center">7.234</td>
+<td align="center">-8.345</td>
+<td align="center">6.961e-16</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>all three polynomials are statistically signifigant</p>
+</blockquote>
+<h5>
+<span class="math inline">\(ptratio.\)</span>
+</h5>
+<pre class="r"><code>lm.ptratio.d &lt;- Boston %$% lm(crim~poly(ptratio,3))
+pander(summary(lm.ptratio.d)$coefficients)</code></pre>
+<table style="width:96%;">
+<colgroup>
+<col width="33%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.614</td>
+<td align="center">0.361</td>
+<td align="center">10.01</td>
+<td align="center">1.271e-21</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(ptratio, 3)1</strong></td>
+<td align="center">56.05</td>
+<td align="center">8.122</td>
+<td align="center">6.901</td>
+<td align="center">1.565e-11</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>poly(ptratio, 3)2</strong></td>
+<td align="center">24.77</td>
+<td align="center">8.122</td>
+<td align="center">3.05</td>
+<td align="center">0.002405</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(ptratio, 3)3</strong></td>
+<td align="center">-22.28</td>
+<td align="center">8.122</td>
+<td align="center">-2.743</td>
+<td align="center">0.006301</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>the cubic polynomial is not statistically signifigant, and the square polynomial is barely statistically signifigant</p>
+</blockquote>
+<h5>
+<span class="math inline">\(rad.\)</span>
+</h5>
+<pre class="r"><code>lm.rad.d &lt;- Boston %$% lm(crim~poly(rad,3))
+pander(summary(lm.rad.d)$coefficients)</code></pre>
+<table style="width:90%;">
+<colgroup>
+<col width="27%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.614</td>
+<td align="center">0.2971</td>
+<td align="center">12.16</td>
+<td align="center">5.15e-30</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(rad, 3)1</strong></td>
+<td align="center">120.9</td>
+<td align="center">6.682</td>
+<td align="center">18.09</td>
+<td align="center">1.053e-56</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>poly(rad, 3)2</strong></td>
+<td align="center">17.49</td>
+<td align="center">6.682</td>
+<td align="center">2.618</td>
+<td align="center">0.009121</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(rad, 3)3</strong></td>
+<td align="center">4.698</td>
+<td align="center">6.682</td>
+<td align="center">0.7031</td>
+<td align="center">0.4823</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>the cubic polynomial is not statistically signifigant, and the square polynomial is barely statistically signifigant, less so than for ptratio</p>
+</blockquote>
+<h5>
+<span class="math inline">\(rm.\)</span>
+</h5>
+<pre class="r"><code>lm.rm.d &lt;- Boston %$% lm(crim~poly(rm,3))
+pander(summary(lm.rm.d)$coefficients)</code></pre>
+<table style="width:89%;">
+<colgroup>
+<col width="26%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.614</td>
+<td align="center">0.3703</td>
+<td align="center">9.758</td>
+<td align="center">1.027e-20</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(rm, 3)1</strong></td>
+<td align="center">-42.38</td>
+<td align="center">8.33</td>
+<td align="center">-5.088</td>
+<td align="center">5.128e-07</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>poly(rm, 3)2</strong></td>
+<td align="center">26.58</td>
+<td align="center">8.33</td>
+<td align="center">3.191</td>
+<td align="center">0.001509</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(rm, 3)3</strong></td>
+<td align="center">-5.51</td>
+<td align="center">8.33</td>
+<td align="center">-0.6615</td>
+<td align="center">0.5086</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>the cubic polynomial is not statistically signifigant, and the square polynomial is just almost statistically signifigant but not quite</p>
+</blockquote>
+<h5>
+<span class="math inline">\(tax.\)</span>
+</h5>
+<pre class="r"><code>lm.tax.d &lt;- Boston %$% lm(crim~poly(tax,3))
+pander(summary(lm.tax.d)$coefficients)</code></pre>
+<table style="width:90%;">
+<colgroup>
+<col width="27%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.614</td>
+<td align="center">0.3047</td>
+<td align="center">11.86</td>
+<td align="center">8.956e-29</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(tax, 3)1</strong></td>
+<td align="center">112.6</td>
+<td align="center">6.854</td>
+<td align="center">16.44</td>
+<td align="center">6.976e-49</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>poly(tax, 3)2</strong></td>
+<td align="center">32.09</td>
+<td align="center">6.854</td>
+<td align="center">4.682</td>
+<td align="center">3.665e-06</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(tax, 3)3</strong></td>
+<td align="center">-7.997</td>
+<td align="center">6.854</td>
+<td align="center">-1.167</td>
+<td align="center">0.2439</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>the cubic polynomial is not statistically signifigant</p>
+</blockquote>
+<h5>
+<span class="math inline">\(zn.\)</span>
+</h5>
+<pre class="r"><code>lm.zn.d &lt;- Boston %$% lm(crim~poly(zn,3))
+pander(summary(lm.zn.d)$coefficients)</code></pre>
+<table style="width:89%;">
+<colgroup>
+<col width="26%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.614</td>
+<td align="center">0.3722</td>
+<td align="center">9.709</td>
+<td align="center">1.547e-20</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(zn, 3)1</strong></td>
+<td align="center">-38.75</td>
+<td align="center">8.372</td>
+<td align="center">-4.628</td>
+<td align="center">4.698e-06</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>poly(zn, 3)2</strong></td>
+<td align="center">23.94</td>
+<td align="center">8.372</td>
+<td align="center">2.859</td>
+<td align="center">0.004421</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>poly(zn, 3)3</strong></td>
+<td align="center">-10.07</td>
+<td align="center">8.372</td>
+<td align="center">-1.203</td>
+<td align="center">0.2295</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>the cubic polynomial is not statistically signifigant, and the square polynomial is almost statistically signifigant</p>
+</blockquote>
+<blockquote>
+<p>There is a possibility of a non linear relationship for <code>indus</code>, <code>medv</code> and, <code>nox</code> with <code>crim</code>. `</p>
+</blockquote>
 
     </div>
 

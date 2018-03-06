@@ -103,5 +103,9 @@ body {
 }
 
 code {
-    background-color: rgb(170,170,170);
+  background-color: rgb(170,170,170);
+}
+
+table {
+  background-color: rgb(170,170,170);
 }
