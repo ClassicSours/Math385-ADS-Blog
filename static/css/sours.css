@@ -123,14 +123,15 @@ table {
   color: rgb(88, 159, 86);
 }
 
-/* non active navbar buttons */
+
+
 .navbar-default .navbar-nav>li>a,
 .navbar-default .navbar-nav>a:focus,
 .navbar-default .navbar-nav>a:hover {
   white-space: nowrap;
   -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
-  color: rgb(40,80,43);
+  color: rgb(40,80,43); /* non active navbar buttons */
   font-weight: 600;
 }
 
@@ -140,10 +141,13 @@ table {
 }
 
 .navbar-default .navbar-nav>li>a:hover {
-  color: rgb(171,212,115);
+  color: rgb(102, 186, 101); /* hover over navbar links */
   background-color: transparent;
 }
 
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: rgb(171,212,115) !important;
+}
 
 /* active navbar button */
 .navbar-default .navbar-nav>.active>a,
@@ -154,12 +158,78 @@ table {
   background-color: transparent !important; /* Override Bootstrap. */
 }
 
-/* buttons */
+/*************************************************
+ *  Button Primary: Color Override
+ **************************************************/
+
+.btn-primary {
+  border-color: rgb(73, 133, 72) !important;
+  background: rgb(73, 133, 72) !important; /* project button background color */
+}
+
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary:visited,
+.open > .dropdown-toggle.btn-primary {
+  background: rgba(171,212,115,.5) !important;
+}
+
+.btn-light {
+  border-color: #fff !important;
+  background: #fff !important;
+}
+
+.btn-light:hover,
+.btn-light:active,
+.btn-light.active {
+  background: rgba(0,0,0,0.4) !important;
+}
+
+/*************************************************
+ *  Toolbar Buttons
+ **************************************************/
+
+.btn-toolbar .btn {
+  font-size: 0.9rem;
+  padding: 10px 14px 9px;
+  border: none;
+}
+
+.btn-toolbar .btn:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+.btn-toolbar .btn:last-child {
+  border-radius: 0 6px 6px 0;
+}
+
+.btn-toolbar .btn.btn-primary:hover,
+.btn-toolbar .btn.btn-primary:focus {
+  background-color: rgb(29, 53, 29) !important; /* mousever nav button */
+}
+
+.btn-toolbar .btn.btn-primary:active,
+.btn-toolbar .btn.btn-primary.active {
+  background-color: rgb(58, 106, 57) !important; /* non selected button */
+}
+
+/*************************************************
+ *  Button Outlines
+ **************************************************/
+
+.btn-outline {
+  background-color: transparent !important;
+  color: inherit;
+  transition: all .5s;
+}
+
 .btn-primary.btn-outline {
-  color: rgb(171,212,115) !important;
-  border-color: rgb(171,212,115) !important;
+  color: rgb(117,212,115) !important;
+  border-color: rgb(117,212,115) !important;
 }
 
 .btn-primary.btn-outline:focus {
-  color: rgb(171,212,115) !important;
+  color: rgb(44,80,43) !important;
 }
