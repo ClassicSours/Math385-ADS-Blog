@@ -90,8 +90,12 @@ body {
 }
 
 a,
-h3.article-title a:hover {
+.article-title a {
   color: rgba(171,212,115,1);
+}
+
+.article-title a:hover {
+  color: rgb(29, 53, 29);
 }
 
 .article-title a:visited {
