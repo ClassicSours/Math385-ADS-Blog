@@ -17,7 +17,7 @@ a, a:hover {
 }
 
 a:visited {
-  color: rgb(83, 117, 36);
+  color: rgb(88, 159, 86);
 }
 
 .dark pre,
@@ -82,20 +82,17 @@ body {
   color: #ffffff;
 }
 
-.article-title a {
+a,
+h3.article-title a:hover {
   color: rgba(171,212,115,1);
 }
 
 .article-title a:visited {
-  color: rgb(83, 117, 36);
+  color: rgb(88, 159, 86);
 }
 
-.article-title a:hover {
-  color: rgb(83, 117, 36);
-}
-
-.article-title a:visited:hover {
-  color: rgb(83, 117, 36);
+a:hover {
+  color:rgb(58,106,57);
 }
 
 .math {
@@ -108,4 +105,61 @@ code {
 
 table {
   background-color: rgb(170,170,170);
+}
+
+
+/* navbar */
+.navbar-default {
+  border-color: rgb(171,212,115);
+  background: rgb(37,37,37);
+}
+
+.navbar-default .navbar-brand {
+  color: rgb(171,212,115);
+}
+
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:hover {
+  color: rgb(88, 159, 86);
+}
+
+/* non active navbar buttons */
+.navbar-default .navbar-nav>li>a,
+.navbar-default .navbar-nav>a:focus,
+.navbar-default .navbar-nav>a:hover {
+  white-space: nowrap;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  color: rgb(40,80,43);
+  font-weight: 600;
+}
+
+.navbar-default .navbar-nav>li>a:focus {
+  color: rgb(40,80,43);
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  color: rgb(171,212,115);
+  background-color: transparent;
+}
+
+
+/* active navbar button */
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+  color: rgb(171,212,115);
+  font-weight: 700;
+  background-color: transparent !important; /* Override Bootstrap. */
+}
+
+/* buttons */
+.btn-primary.btn-outline {
+  color: rgb(171,212,115) !important;
+  border-color: rgb(171,212,115) !important;
+}
+
+.btn-primary.btn-outline:focus {
+  color: rgb(171,212,115) !important;
 }
