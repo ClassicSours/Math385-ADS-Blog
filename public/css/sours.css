@@ -71,10 +71,17 @@ body {
   background-color: rgba(37, 37, 37, .5);
 }
 
-.card-simple {
+.card-simple,
+.card-text {
   background-color: rgba(72, 72, 72, .3);
 }
 
+.card h4 a {
+  color: rgb(85, 106, 57);
+}
+.card-text p {
+  color: rgb(37,37,37) !important;
+}
 /* articles */
 .article-date,
 .middot-divider,
@@ -147,10 +154,7 @@ table {
   background-color: rgb(171,212,115) !important;
 }
 
-.navbar-default .navbar-collapse ,
-.navbar-default .navbar-form {
-  border-color: rgb(171,212,115) !important;
-}
+
 /* active navbar button */
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:focus,
