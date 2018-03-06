@@ -1,0 +1,70 @@
+---
+title: ISLR Ch 3
+author: Aaron Shaffer
+date: '2018-03-05'
+slug: islr_ch3
+categories:
+  - r
+  - ISLR
+tags:
+  - homework
+  - R Markdown
+summary: "ISLR Ch3 Exercises #4, #15"
+header-includes:
+  \usepackage[dvipsnames]{xcolor}
+output: html_document
+---
+
+
+
+<h1>
+ISLR Ch3 Exercises #4, #15
+</h1>
+<h3>
+<ol start="4" style="list-style-type: decimal">
+<li>I collect a set of data (<code>n = 100</code> observations) containing a single predictor and a quantitative response. I then fit a linear regression model to the data, as well as a separate cubic regression, i.e. <span class="math inline">\(Y = \beta_{0}+\beta_{1}X+\beta_{2}X^{2}+\beta_{3}X^{3}+\epsilon\)</span>.</li>
+</ol>
+</h3>
+<h4>
+<span class="math inline">\((a)\)</span> Suppose that the true relationship between <code>X</code> and <code>Y</code> is <code>linear</code>, i.e. <span class="math inline">\(Y = \beta_0 + \beta_{1}X + \epsilon\)</span>. Consider the training residual sum of squares <code>(RSS)</code> for the linear regression, and also the training <code>RSS</code> for the cubic regression. Would we expect one to be lower than the other, would we expect them to be the same, or is there not enough information to tell? Justify your answer.
+</h4>
+<blockquote>
+<p>We would expect <code>RSS</code> to be lower for the <code>cubic regression</code>. This model is much more flexible and will allow for the line to be much closer to the training data set.</p>
+</blockquote>
+<h4>
+<span class="math inline">\((b)\)</span> Answer <span class="math inline">\((a)\)</span> using test rather than training RSS.
+</h4>
+<blockquote>
+<p>We would expect the <code>RSS</code> to be lower for the <code>linear regression</code>. Since the true underlying relationship is linear the cubic regression is more likely to overpredict on the training set and therefor have a higher <code>RSS</code> for the test set.</p>
+</blockquote>
+<h4>
+<span class="math inline">\((c)\)</span> Suppose that the true relationship between <code>X</code> and <code>Y</code> is not linear, but we don’t know how far it is from linear. Consider the training RSS for the linear regression, and also the training RSS for the cubic regression. Would we expect one to be lower than the other, would we expect them to be the same, or is there not enough information to tell? Justify your answer.
+</h4>
+<blockquote>
+<p>The <code>cubic regression</code> model will perform better on the training set because it has greater degrees of freedom and the model is also non linear.</p>
+</blockquote>
+<h4>
+<span class="math inline">\((d)\)</span> Answer <span class="math inline">\((c)\)</span> using test rather than training RSS.
+</h4>
+<blockquote>
+<p>It is very possible that the <code>cubic regression</code> model will perform better on the test rather than the training data than the <code>linear regression</code> model but. If the <code>cubic regression</code> model is over trained on the training data then the <code>linear regerssion</code> model might strike a better line through the test data data and have a lower <code>RSS</code></p>
+</blockquote>
+<h3>
+<ol start="15" style="list-style-type: decimal">
+<li>This problem involves the <code>Boston</code> data set, which we saw in the lab for this chapter. We will now try to predict <code>per capita crime rate</code> using the other variables in this data set. In other words, <code>per capita crime rate</code> is the <code>response</code>, and the other variables are the predictors.
+</h3></li>
+</ol>
+<h4>
+<span class="math inline">\((a)\)</span> For each predictor, fit a simple linear regression model to predict the response. Describe your results. In which of the models is there a statistically significant association between the predictor and the response? Create some plots to back up your assertions.
+</h4>
+<h4>
+<span class="math inline">\((b)\)</span> Fit a multiple regression model to predict the response using all of the predictors. Describe your results. For which predictors can we reject the null hypothesis <span class="math inline">\(H_0\)</span> : <span class="math inline">\(\beta_j = 0\)</span>?
+</h4>
+<h4>
+<span class="math inline">\((c)\)</span> How do your results from (a) compare to your results from (b)? Create a plot displaying the univariate regression coefficients from (a) on the x-axis, and the multiple regression coefficients from (b) on the y-axis. That is, each predictor is displayed as a single point in the plot. Its coefficient in a simple linear regres- sion model is shown on the x-axis, and its coefficient estimate in the multiple linear regression model is shown on the y-axis.
+</h4>
+<h4>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Is there evidence of non-linear association between any of the predictors and the response? To answer this question, for each predictor X, fit a model of the form Y = β 0 + β 1 X + β 2 X 2 + β 3 X 3 + .
+</h4></li>
+</ol>

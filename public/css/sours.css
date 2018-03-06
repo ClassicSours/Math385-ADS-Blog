@@ -1,0 +1,107 @@
+  /*************************************************
+ *  A custom color theme for Hugo Academic
+ *  Set `custom_css = ["green.css"] in `config.toml`.
+ *  Then save this file as `/static/css/green.css` relative to your website root (i.e. not in `themes/academic` directory).
+ *  https://github.com/gcushen/hugo-academic
+ **************************************************/
+
+/* icons */
+.fa,
+.ai {
+  color: rgb(171, 212, 115);
+}
+
+/* links */
+a, a:hover {
+  color: rgb(171,212,115);
+}
+
+a:visited {
+  color: rgb(83, 117, 36);
+}
+
+.dark pre,
+.dark code {
+  color: #c7254e;
+  background-color: #f9f2f4;
+}
+
+
+/* color of portait / h1 etc */
+#profile .portrait-title h2 {
+  font-size: 1.75em;
+  font-weight: 300;
+  color: #ffffff;
+  margin: 20px 0 10px 0;
+}
+
+#profile .portrait-title h3 {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #86918F;
+    margin: 0px 0 10px 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+}
+
+p, li {
+  color: rgba(134, 145, 143, 1);
+}
+
+ul.ul-edu li .description p.institution {
+    font-size: 0.75rem;
+    color: rgba(134, 145, 143, .6);
+}
+
+body {
+  background-color: rgb(39,39,39);
+}
+
+.home-section {
+  background-color: rgba(32, 32, 32, 1);
+}
+
+#posts.home-section {
+  background-color: rgba(37, 37, 37, 1);
+}
+
+#contact.home-section {
+  background-color: rgba(37, 37, 37, .5);
+}
+
+.card-simple {
+  background-color: rgba(72, 72, 72, .3);
+}
+
+/* articles */
+.article-date,
+.middot-divider,
+.article-reading-time {
+  color: #ffffff;
+}
+
+.article-title a {
+  color: rgba(171,212,115,1);
+}
+
+.article-title a:visited {
+  color: rgb(83, 117, 36);
+}
+
+.article-title a:hover {
+  color: rgb(83, 117, 36);
+}
+
+.article-title a:visited:hover {
+  color: rgb(83, 117, 36);
+}
+
+.math {
+  color: #F76497;
+}
+
+code {
+    background-color: rgb(170,170,170);
+}
