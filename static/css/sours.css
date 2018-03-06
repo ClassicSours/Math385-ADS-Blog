@@ -123,8 +123,6 @@ table {
   color: rgb(88, 159, 86);
 }
 
-
-
 .navbar-default .navbar-nav>li>a,
 .navbar-default .navbar-nav>a:focus,
 .navbar-default .navbar-nav>a:hover {
@@ -149,6 +147,10 @@ table {
   background-color: rgb(171,212,115) !important;
 }
 
+.navbar-default .navbar-collapse ,
+.navbar-default .navbar-form {
+  border-color: rgb(171,212,115) !important;
+}
 /* active navbar button */
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:focus,
