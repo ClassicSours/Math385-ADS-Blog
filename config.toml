@@ -59,10 +59,10 @@ defaultContentLanguageInSubdir = false
 
   gravatar = false  # Get your avatar from Gravatar.com? (true/false)
   avatar = "portrait.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
-  email = "aaron.c.shaffer@gmail.com"
+  email = "ClassicSours@gmail.com"
   address = "Chico CA, 95926, USA"
   office_hours = ""
-  phone = "(925) 817 - 9466"
+  phone = ""
   skype = ""
   telegram = ""
 
