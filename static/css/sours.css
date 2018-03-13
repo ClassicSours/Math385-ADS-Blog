@@ -12,12 +12,22 @@
 }
 
 /* links */
-a, a:hover {
-  color: rgb(171,212,115);
+a,
+h3.article-title a {
+  color: rgb(171,212,115)
 }
 
-a:visited {
-  color: rgb(88, 159, 86);
+
+a:visited,
+h3.article-title a:visited {
+  color: rgb(128, 159, 86);
+}
+
+a:hover,
+a:visited:hover,
+h3.article-title a:hover,
+h3.article-title a:visited:hover {
+  color:rgb(58,106,57);
 }
 
 .dark pre,
@@ -47,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p, li {
-  color: rgba(134, 145, 143, 1);
+  color: #efefef;
 }
 
 ul.ul-edu li .description p.institution {
@@ -87,23 +97,6 @@ body {
 .middot-divider,
 .article-reading-time {
   color: #ffffff;
-}
-
-a,
-.article-title a {
-  color: rgba(171,212,115,1);
-}
-
-.article-title a:hover {
-  color: rgb(29, 53, 29);
-}
-
-.article-title a:visited {
-  color: rgb(88, 159, 86);
-}
-
-a:hover {
-  color:rgb(58,106,57);
 }
 
 .math {

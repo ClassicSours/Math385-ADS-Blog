@@ -1,4 +1,4 @@
-  /*************************************************
+/*************************************************
  *  A custom color theme for Hugo Academic
  *  Set `custom_css = ["green.css"] in `config.toml`.
  *  Then save this file as `/static/css/green.css` relative to your website root (i.e. not in `themes/academic` directory).
@@ -12,12 +12,22 @@
 }
 
 /* links */
-a, a:hover {
-  color: rgb(171,212,115);
+a,
+h3.article-title a {
+  color: rgb(171,212,115)
 }
 
-a:visited {
-  color: rgb(88, 159, 86);
+
+a:visited,
+h3.article-title a:visited {
+  color: rgb(128, 159, 86);
+}
+
+a:hover,
+a:visited:hover,
+h3.article-title a:hover,
+h3.article-title a:visited:hover {
+  color:rgb(58,106,57);
 }
 
 .dark pre,
@@ -47,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p, li {
-  color: rgba(134, 145, 143, 1);
+  color: #efefef;
 }
 
 ul.ul-edu li .description p.institution {
@@ -87,19 +97,6 @@ body {
 .middot-divider,
 .article-reading-time {
   color: #ffffff;
-}
-
-a,
-h3.article-title a:hover {
-  color: rgba(171,212,115,1);
-}
-
-.article-title a:visited {
-  color: rgb(88, 159, 86);
-}
-
-a:hover {
-  color:rgb(58,106,57);
 }
 
 .math {

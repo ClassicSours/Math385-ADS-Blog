@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>ISLR Chapter 4</title>
+      <link>/post/islr_ch4/</link>
+      <pubDate>Mon, 12 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/islr_ch4/</guid>
+      <description>ISLR Ch4 Exercises #5, #13   We now examine the differences between LDA and QDA.    \((a)\) If the Bayes decision boundary is linear, do we expect LDA or QDA to perform better on the training set? On the test set?   On the training set of data you would expect LDA to perform better than the QDA if the decision boundary is linear and there are relatively few training observations.</description>
+    </item>
+    
+    <item>
       <title>ISLR Ch 3</title>
       <link>/post/islr_ch3/</link>
       <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
