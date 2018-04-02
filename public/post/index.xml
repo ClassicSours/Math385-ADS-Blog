@@ -13,6 +13,19 @@
     
     
     <item>
+      <title>ISLR Chapter 5</title>
+      <link>/post/islr_ch5/</link>
+      <pubDate>Fri, 30 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/islr_ch5/</guid>
+      <description>ISLR Ch 5: #3, #5
+3 We now review k-fold cross-validation. \((a)\) Explain how k-fold cross-validation is implemented.
+k-fold cross-validation is implemented by chosing a number of folds and then splitting the data into k nearly evenly partitioned
+\((b)\) What are the advantages and disadvantages of k-fold cross-validation relative to:
+ The validation set approach?    Having more than one set of training data allows for a better model.</description>
+    </item>
+    
+    <item>
       <title>ISLR Chapter 4</title>
       <link>/post/islr_ch4/</link>
       <pubDate>Mon, 12 Mar 2018 00:00:00 +0000</pubDate>
