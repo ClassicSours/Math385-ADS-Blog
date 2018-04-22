@@ -13,6 +13,16 @@
     
     
     <item>
+      <title>Genocide Reading Blog Post</title>
+      <link>/post/genocide-reading-blog-post/</link>
+      <pubDate>Sat, 21 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/genocide-reading-blog-post/</guid>
+      <description>http://www.fast.ai/2017/11/02/ethics/
+Genocide through Data Science is without a doubt something that is extremely scary. Pre-existing beliefs make their way into models and then are used to convince other people on decisions that effect the lives of hundreds, thousands, even millions or billions of people. Computers are products of their environment, algorithms don&amp;rsquo;t make things up from nowhere. Data is fed into them that influnces their models based on socio-economic norms and standards from the past which was much less open minded and equality oriented than the present.</description>
+    </item>
+    
+    <item>
       <title>ISLR Chapter 8</title>
       <link>/post/islr-ch-8/</link>
       <pubDate>Thu, 19 Apr 2018 00:00:00 +0000</pubDate>
