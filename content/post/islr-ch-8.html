@@ -1,0 +1,169 @@
+---
+title: ISLR Chapter 8
+author: Aaron Shaffer
+date: '2018-04-19'
+slug: islr-ch-8
+categories:
+  - ISLR
+  - R
+tags:
+  - homework
+summary: "ISLR Ch5, Exercises #5, #7, #9"
+---
+
+
+
+<p>ISLR Ch 8 #5, #7, #9</p>
+<p><span class="math inline">\(5\)</span>. Suppose we produce ten bootstrapped samples from a data set containing red and green classes. We then apply a classification tree to each bootstrapped sample and, for a specific value of X, produce 10 estimates of <span class="math inline">\(P (Class is Red|X)\)</span>:</p>
+<center>
+0.1, 0.15, 0.2, 0.2, 0.55, 0.6, 0.6, 0.65, 0.7, and 0.75.
+</center>
+<p>There are two common ways to combine these results together into a single class prediction. One is the majority vote approach discussed in this chapter. The second approach is to classify based on the average probability. In this example, what is the final classification under each of these two approaches?</p>
+<p>The final classification under the Majority vote approach is that we classify <span class="math inline">\(X\)</span> as red because 6 values had <span class="math inline">\(P &gt; .5\)</span> and 4 had values <span class="math inline">\(P &lt; .5\)</span> so the X is red. Using the average probability approach we classify <span class="math inline">\(X\)</span> as green because the average of all the above probablilities is <span class="math inline">\(.45\)</span> which is <span class="math inline">\(&lt; .5\)</span>.</p>
+<p><span class="math inline">\(7.\)</span> In the lab, we applied random forests to the Boston data using <span class="math inline">\(mtry = 6\)</span> and using <span class="math inline">\(ntree = 25\)</span> and <span class="math inline">\(ntree = 500\)</span>. Create a plot displaying the test error resulting from random forests on this data set for a more comprehensive range of values for mtry and ntree . You can model your plot after Figure 8.10. Describe the results obtained.</p>
+<pre class="r"><code>library(MASS)
+library(randomForest)
+
+set.seed(1)
+
+n &lt;- nrow(Boston)
+train.set &lt;- sample(1:n,n/2)
+
+Boston.train &lt;- Boston[train.set, -14]
+Boston.test &lt;- Boston[-train.set, -14]
+
+Y.train &lt;- Boston[train.set, 14]
+Y.test &lt;- Boston[-train.set, 14]
+
+rf.a &lt;- randomForest(Boston.train , Y.train, Boston.test, Y.test, mtry = ncol(Boston.train), ntree = 5000)
+rf.b &lt;- randomForest(Boston.train , Y.train, Boston.test, Y.test, mtry = ncol(Boston.train) / 2, ntree = 5000)
+rf.c &lt;- randomForest(Boston.train , Y.train, Boston.test, Y.test, mtry = sqrt(ncol(Boston.train)), ntree = 5000)
+
+library(ggplot2)
+ggplot() + 
+  geom_line(aes(x = c(1:5000), y = rf.a$test$mse, color = &quot;M = P&quot;)) +
+  geom_line(aes(x = c(1:5000), y = rf.b$test$mse, color = &quot;M = P/2&quot;)) +
+  geom_line(aes(x = c(1:5000), y = rf.c$test$mse, color = &quot;M = Sqrt(P)&quot;)) +
+  theme_classic() + 
+  xlab(&quot;Number of Trees&quot;) + ylab(&quot;Test Classification Error&quot;) + scale_colour_discrete(name=&quot;Form&quot;)</code></pre>
+<p><img src="/post/islr-ch-8_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>rf.a$test$mse[5000]</code></pre>
+<pre><code>## [1] 13.41793</code></pre>
+<pre class="r"><code>rf.b$test$mse[5000]</code></pre>
+<pre><code>## [1] 11.49115</code></pre>
+<pre class="r"><code>rf.c$test$mse[5000]</code></pre>
+<pre><code>## [1] 11.60906</code></pre>
+<p>For M = P the classification error never got much better than <span class="math inline">\(~13.4%\)</span>, however for both <span class="math inline">\(M = P/2\)</span> and <span class="math inline">\(M = \sqrt(P)\)</span> the final error was much lower. both hovering right around 11.5% error. for <span class="math inline">\(M = \sqrt(P)\)</span> the error actually reached that number when it had very few trees, but eventually it converged with the other model where <span class="math inline">\(M = P/2\)</span></p>
+<p><span class="math inline">\(9.\)</span> This problem involves the OJ data set which is part of the ISLR package.</p>
+<pre class="r"><code>library(ISLR)</code></pre>
+<p><span class="math inline">\((a)\)</span> Create a training set containing a random sample of 800 observations, and a test set containing the remaining observations.</p>
+<pre class="r"><code>set.seed(2)
+n &lt;- nrow(OJ)
+training.set &lt;- sample(1:n, 800)
+OJ.train &lt;- OJ[training.set,]
+OJ.test &lt;- OJ[-training.set,]</code></pre>
+<p><span class="math inline">\((b)\)</span> Fit a tree to the training data, with <span class="math inline">\(Purchase\)</span> as the response and the other variables as predictors. Use the summary() function to produce summary statistics about the tree, and describe the results obtained. What is the training error rate? How many terminal nodes does the tree have?</p>
+<pre class="r"><code>library(tree)
+training.tree &lt;- tree(Purchase ~ ., data = OJ.train)
+summary(training.tree)</code></pre>
+<p>Classification tree: tree(formula = Purchase ~ ., data = OJ.train) Variables actually used in tree construction: [1] “LoyalCH” “PriceDiff” “ListPriceDiff” “PctDiscMM”<br />
+Number of terminal nodes: 8 Residual mean deviance: 0.7659 = 606.6 / 792 Misclassification error rate: 0.1675 = 134 / 800</p>
+<p>The fitted tree has <span class="math inline">\(8 terminal nodes\)</span> and has a <span class="math inline">\(training error rate of 0.1675\)</span></p>
+<p><span class="math inline">\((c)\)</span> Type in the name of the tree object in order to get a detailed text output. Pick one of the terminal nodes, and interpret the information displayed.</p>
+<pre class="r"><code>training.tree</code></pre>
+<p>node), split, n, deviance, yval, (yprob) * denotes terminal node</p>
+<ol style="list-style-type: decimal">
+<li>root 800 1077.00 CH ( 0.60000 0.40000 )<br />
+</li>
+<li>LoyalCH &lt; 0.50395 360 425.40 MM ( 0.27778 0.72222 )
+<ol start="4" style="list-style-type: decimal">
+<li>LoyalCH &lt; 0.276142 176 132.60 MM ( 0.12500 0.87500 )<br />
+</li>
+<li>LoyalCH &lt; 0.0491775 63 10.27 MM ( 0.01587 0.98413 ) *</li>
+<li>LoyalCH &gt; 0.0491775 113 108.50 MM ( 0.18584 0.81416 ) *</li>
+<li>LoyalCH &gt; 0.276142 184 250.80 MM ( 0.42391 0.57609 )<br />
+</li>
+<li>PriceDiff &lt; 0.05 71 75.77 MM ( 0.22535 0.77465 ) *</li>
+<li>PriceDiff &gt; 0.05 113 155.60 CH ( 0.54867 0.45133 ) *</li>
+</ol></li>
+<li>LoyalCH &gt; 0.50395 440 350.50 CH ( 0.86364 0.13636 )
+<ol start="6" style="list-style-type: decimal">
+<li>LoyalCH &lt; 0.745156 182 210.00 CH ( 0.73626 0.26374 )<br />
+</li>
+<li>ListPriceDiff &lt; 0.235 70 97.04 CH ( 0.50000 0.50000 )
+<ol start="24" style="list-style-type: decimal">
+<li>PctDiscMM &lt; 0.196196 51 66.22 CH ( 0.64706 0.35294 ) *</li>
+<li>PctDiscMM &gt; 0.196196 19 12.79 MM ( 0.10526 0.89474 ) *</li>
+</ol></li>
+<li>ListPriceDiff &gt; 0.235 112 80.42 CH ( 0.88393 0.11607 ) *</li>
+<li>LoyalCH &gt; 0.745156 258 97.07 CH ( 0.95349 0.04651 ) *</li>
+</ol></li>
+</ol>
+<p>The terminal node 13, is for <span class="math inline">\(ListPriceDiff &gt; 0.235\)</span> It has 102 observations and it has a deviance of <span class="math inline">\(80.42\)</span>. <span class="math inline">\(88.4%%\)</span> of observations in this branch have a value of ‘CH’ and the remaining <span class="math inline">\(11.6%%\)</span> take the value of MM</p>
+<p><span class="math inline">\((d)\)</span> Create a plot of the tree, and interpret the results.</p>
+<pre class="r"><code>plot(training.tree)
+text(training.tree)</code></pre>
+<p><img src="/post/islr-ch-8_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>The root indicator of the tree is <span class="math inline">\(LoyalCH\)</span>, And it is again an important leaf node in several of the tree branches as an indicator variable for differentiating between CH and MM.</p>
+<p><span class="math inline">\((e)\)</span> Predict the response on the test data, and produce a confusion matrix comparing the test labels to the predicted test labels. What is the test error rate?</p>
+<pre class="r"><code>library(magrittr)
+test.pred &lt;- predict(training.tree, OJ.test, type = &quot;class&quot;)
+prop.table(table(test.pred, OJ.test$Purchase)) %&gt;% round(digits = 3)</code></pre>
+<pre><code>##          
+## test.pred    CH    MM
+##        CH 0.596 0.104
+##        MM 0.044 0.256</code></pre>
+<p>The test error rate is around <span class="math inline">\(23%%\)</span></p>
+<p><span class="math inline">\((f)\)</span> Apply the cv.tree() function to the training set in order to determine the optimal tree size.</p>
+<pre class="r"><code>(cv.training.tree &lt;- cv.tree(training.tree, FUN = prune.misclass))</code></pre>
+<pre><code>## $size
+## [1] 8 7 4 2 1
+## 
+## $dev
+## [1] 150 148 172 172 320
+## 
+## $k
+## [1]  -Inf   0.0   5.0   5.5 160.0
+## 
+## $method
+## [1] &quot;misclass&quot;
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;prune&quot;         &quot;tree.sequence&quot;</code></pre>
+<p><span class="math inline">\((g)\)</span> Produce a plot with tree size on the x-axis and cross-validated classification error rate on the y-axis.</p>
+<pre class="r"><code>ggplot() + 
+  geom_line(aes(x = cv.training.tree$size, y = cv.training.tree$dev)) + 
+  geom_point(aes(x = cv.training.tree$size, y = cv.training.tree$dev), shape = 1, size = 2) +
+  geom_text(aes(x = cv.training.tree$size, y = cv.training.tree$dev, label = cv.training.tree$dev), 
+              nudge_y = 5, nudge_x = .25) +
+  theme_classic() + 
+  xlab(&quot;Tree Size&quot;) + ylab(&quot;CV Classification Error Rate&quot;)</code></pre>
+<p><img src="/post/islr-ch-8_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><span class="math inline">\((h)\)</span> Which tree size corresponds to the lowest cross-validated classification error rate?</p>
+<p>For this sample with <span class="math inline">\(set.seed(2)\)</span> a tree with <span class="math inline">\(size = 7\)</span> have the lowest CV Classification Error Rate.</p>
+<p><span class="math inline">\((i)\)</span> Produce a pruned tree corresponding to the optimal tree size obtained using cross-validation. If cross-validation does not lead to selection of a pruned tree, then create a pruned tree with five terminal nodes.</p>
+<pre class="r"><code>pruned.tree &lt;- prune.misclass(training.tree, best = 7)
+plot(pruned.tree)
+text(pruned.tree)</code></pre>
+<p><img src="/post/islr-ch-8_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><span class="math inline">\((j)\)</span> Compare the training error rates between the pruned and unpruned trees. Which is higher?</p>
+<pre class="r"><code>summary(training.tree)</code></pre>
+<p>Classification tree: tree(formula = Purchase ~ ., data = OJ.train) Variables actually used in tree construction: [1] “LoyalCH” “PriceDiff” “ListPriceDiff” “PctDiscMM”<br />
+Number of terminal nodes: 8 Residual mean deviance: 0.7659 = 606.6 / 792 Misclassification error rate: 0.1675 = 134 / 800</p>
+<pre class="r"><code>summary(pruned.tree)</code></pre>
+<p>Classification tree: snip.tree(tree = training.tree, nodes = 4L) Variables actually used in tree construction: [1] “LoyalCH” “PriceDiff” “ListPriceDiff” “PctDiscMM”<br />
+Number of terminal nodes: 7 Residual mean deviance: 0.7824 = 620.5 / 793 Misclassification error rate: 0.1675 = 134 / 800</p>
+<p>Both Trees have an identical Misclassification error rate of <span class="math inline">\(0.1675\)</span></p>
+<p><span class="math inline">\((k)\)</span> Compare the test error rates between the pruned and unpruned trees. Which is higher?</p>
+<pre class="r"><code>prune.pred &lt;- predict(pruned.tree, OJ.test, type = &quot;class&quot;)
+prop.table(table(prune.pred,OJ.test$Purchase)) %&gt;% round(digits = 3)</code></pre>
+<pre><code>##           
+## prune.pred    CH    MM
+##         CH 0.596 0.104
+##         MM 0.044 0.256</code></pre>
+<pre class="r"><code>prop.table(table(test.pred, OJ.test$Purchase)) %&gt;% round(digits = 3)</code></pre>
+<pre><code>##          
+## test.pred    CH    MM
+##        CH 0.596 0.104
+##        MM 0.044 0.256</code></pre>
+<p>Both have identical error rates and results. We removed one terminal node from the tree and the results were extremely simmilar. The Residual Mean Deviance Changed between the trees but besides that all else remained the same.</p>

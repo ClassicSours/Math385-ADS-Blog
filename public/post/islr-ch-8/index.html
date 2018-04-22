@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.37.1" />
+  <meta name="author" content="Aaron Shaffer">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="ISLR Ch 8 #5, #7, #9
+\(5\). Suppose we produce ten bootstrapped samples from a data set containing red and green classes. We then apply a classification tree to each bootstrapped sample and, for a specific value of X, produce 10 estimates of \(P (Class is Red|X)\):
+ 0.1, 0.15, 0.2, 0.2, 0.55, 0.6, 0.6, 0.65, 0.7, and 0.75.  There are two common ways to combine these results together into a single class prediction.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/islr-ch-8/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#0095eb">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+      
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+      
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+  <link rel="stylesheet" href="/css/sours.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Aaron&#39;s Statistics Blog">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Aaron&#39;s Statistics Blog">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/islr-ch-8/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@ClassicSours">
+  <meta property="twitter:creator" content="@ClassicSours">
+  
+  <meta property="og:site_name" content="Aaron&#39;s Statistics Blog">
+  <meta property="og:url" content="/post/islr-ch-8/">
+  <meta property="og:title" content="ISLR Chapter 8 | Aaron&#39;s Statistics Blog">
+  <meta property="og:description" content="ISLR Ch 8 #5, #7, #9
+\(5\). Suppose we produce ten bootstrapped samples from a data set containing red and green classes. We then apply a classification tree to each bootstrapped sample and, for a specific value of X, produce 10 estimates of \(P (Class is Red|X)\):
+ 0.1, 0.15, 0.2, 0.2, 0.55, 0.6, 0.6, 0.65, 0.7, and 0.75.  There are two common ways to combine these results together into a single class prediction.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2018-04-19T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2018-04-19T00:00:00&#43;00:00">
+  
+
+  
+
+  <title>ISLR Chapter 8 | Aaron&#39;s Statistics Blog</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Aaron&#39;s Statistics Blog</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">ISLR Chapter 8</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2018-04-19 00:00:00 &#43;0000 UTC" itemprop="datePublished dateModified">
+      Apr 19, 2018
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Aaron Shaffer">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    7 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="/categories/islr">ISLR</a
+    >, 
+    
+    <a href="/categories/r">R</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=ISLR%20Chapter%208&amp;url=%2fpost%2fislr-ch-8%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fislr-ch-8%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fislr-ch-8%2f&amp;title=ISLR%20Chapter%208"
+         target="_blank" rel="noopener">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fislr-ch-8%2f&amp;title=ISLR%20Chapter%208"
+         target="_blank" rel="noopener">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=ISLR%20Chapter%208&amp;body=%2fpost%2fislr-ch-8%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+
+    <div class="article-style" itemprop="articleBody">
+      <p>ISLR Ch 8 #5, #7, #9</p>
+<p><span class="math inline">\(5\)</span>. Suppose we produce ten bootstrapped samples from a data set containing red and green classes. We then apply a classification tree to each bootstrapped sample and, for a specific value of X, produce 10 estimates of <span class="math inline">\(P (Class is Red|X)\)</span>:</p>
+<center>
+0.1, 0.15, 0.2, 0.2, 0.55, 0.6, 0.6, 0.65, 0.7, and 0.75.
+</center>
+<p>There are two common ways to combine these results together into a single class prediction. One is the majority vote approach discussed in this chapter. The second approach is to classify based on the average probability. In this example, what is the final classification under each of these two approaches?</p>
+<p>The final classification under the Majority vote approach is that we classify <span class="math inline">\(X\)</span> as red because 6 values had <span class="math inline">\(P &gt; .5\)</span> and 4 had values <span class="math inline">\(P &lt; .5\)</span> so the X is red. Using the average probability approach we classify <span class="math inline">\(X\)</span> as green because the average of all the above probablilities is <span class="math inline">\(.45\)</span> which is <span class="math inline">\(&lt; .5\)</span>.</p>
+<p><span class="math inline">\(7.\)</span> In the lab, we applied random forests to the Boston data using <span class="math inline">\(mtry = 6\)</span> and using <span class="math inline">\(ntree = 25\)</span> and <span class="math inline">\(ntree = 500\)</span>. Create a plot displaying the test error resulting from random forests on this data set for a more comprehensive range of values for mtry and ntree . You can model your plot after Figure 8.10. Describe the results obtained.</p>
+<pre class="r"><code>library(MASS)
+library(randomForest)
+
+set.seed(1)
+
+n &lt;- nrow(Boston)
+train.set &lt;- sample(1:n,n/2)
+
+Boston.train &lt;- Boston[train.set, -14]
+Boston.test &lt;- Boston[-train.set, -14]
+
+Y.train &lt;- Boston[train.set, 14]
+Y.test &lt;- Boston[-train.set, 14]
+
+rf.a &lt;- randomForest(Boston.train , Y.train, Boston.test, Y.test, mtry = ncol(Boston.train), ntree = 5000)
+rf.b &lt;- randomForest(Boston.train , Y.train, Boston.test, Y.test, mtry = ncol(Boston.train) / 2, ntree = 5000)
+rf.c &lt;- randomForest(Boston.train , Y.train, Boston.test, Y.test, mtry = sqrt(ncol(Boston.train)), ntree = 5000)
+
+library(ggplot2)
+ggplot() + 
+  geom_line(aes(x = c(1:5000), y = rf.a$test$mse, color = &quot;M = P&quot;)) +
+  geom_line(aes(x = c(1:5000), y = rf.b$test$mse, color = &quot;M = P/2&quot;)) +
+  geom_line(aes(x = c(1:5000), y = rf.c$test$mse, color = &quot;M = Sqrt(P)&quot;)) +
+  theme_classic() + 
+  xlab(&quot;Number of Trees&quot;) + ylab(&quot;Test Classification Error&quot;) + scale_colour_discrete(name=&quot;Form&quot;)</code></pre>
+<p><img src="/post/islr-ch-8_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>rf.a$test$mse[5000]</code></pre>
+<pre><code>## [1] 13.41793</code></pre>
+<pre class="r"><code>rf.b$test$mse[5000]</code></pre>
+<pre><code>## [1] 11.49115</code></pre>
+<pre class="r"><code>rf.c$test$mse[5000]</code></pre>
+<pre><code>## [1] 11.60906</code></pre>
+<p>For M = P the classification error never got much better than <span class="math inline">\(~13.4%\)</span>, however for both <span class="math inline">\(M = P/2\)</span> and <span class="math inline">\(M = \sqrt(P)\)</span> the final error was much lower. both hovering right around 11.5% error. for <span class="math inline">\(M = \sqrt(P)\)</span> the error actually reached that number when it had very few trees, but eventually it converged with the other model where <span class="math inline">\(M = P/2\)</span></p>
+<p><span class="math inline">\(9.\)</span> This problem involves the OJ data set which is part of the ISLR package.</p>
+<pre class="r"><code>library(ISLR)</code></pre>
+<p><span class="math inline">\((a)\)</span> Create a training set containing a random sample of 800 observations, and a test set containing the remaining observations.</p>
+<pre class="r"><code>set.seed(2)
+n &lt;- nrow(OJ)
+training.set &lt;- sample(1:n, 800)
+OJ.train &lt;- OJ[training.set,]
+OJ.test &lt;- OJ[-training.set,]</code></pre>
+<p><span class="math inline">\((b)\)</span> Fit a tree to the training data, with <span class="math inline">\(Purchase\)</span> as the response and the other variables as predictors. Use the summary() function to produce summary statistics about the tree, and describe the results obtained. What is the training error rate? How many terminal nodes does the tree have?</p>
+<pre class="r"><code>library(tree)
+training.tree &lt;- tree(Purchase ~ ., data = OJ.train)
+summary(training.tree)</code></pre>
+<p>Classification tree: tree(formula = Purchase ~ ., data = OJ.train) Variables actually used in tree construction: [1] “LoyalCH” “PriceDiff” “ListPriceDiff” “PctDiscMM”<br />
+Number of terminal nodes: 8 Residual mean deviance: 0.7659 = 606.6 / 792 Misclassification error rate: 0.1675 = 134 / 800</p>
+<p>The fitted tree has <span class="math inline">\(8 terminal nodes\)</span> and has a <span class="math inline">\(training error rate of 0.1675\)</span></p>
+<p><span class="math inline">\((c)\)</span> Type in the name of the tree object in order to get a detailed text output. Pick one of the terminal nodes, and interpret the information displayed.</p>
+<pre class="r"><code>training.tree</code></pre>
+<p>node), split, n, deviance, yval, (yprob) * denotes terminal node</p>
+<ol style="list-style-type: decimal">
+<li>root 800 1077.00 CH ( 0.60000 0.40000 )<br />
+</li>
+<li>LoyalCH &lt; 0.50395 360 425.40 MM ( 0.27778 0.72222 )
+<ol start="4" style="list-style-type: decimal">
+<li>LoyalCH &lt; 0.276142 176 132.60 MM ( 0.12500 0.87500 )<br />
+</li>
+<li>LoyalCH &lt; 0.0491775 63 10.27 MM ( 0.01587 0.98413 ) *</li>
+<li>LoyalCH &gt; 0.0491775 113 108.50 MM ( 0.18584 0.81416 ) *</li>
+<li>LoyalCH &gt; 0.276142 184 250.80 MM ( 0.42391 0.57609 )<br />
+</li>
+<li>PriceDiff &lt; 0.05 71 75.77 MM ( 0.22535 0.77465 ) *</li>
+<li>PriceDiff &gt; 0.05 113 155.60 CH ( 0.54867 0.45133 ) *</li>
+</ol></li>
+<li>LoyalCH &gt; 0.50395 440 350.50 CH ( 0.86364 0.13636 )
+<ol start="6" style="list-style-type: decimal">
+<li>LoyalCH &lt; 0.745156 182 210.00 CH ( 0.73626 0.26374 )<br />
+</li>
+<li>ListPriceDiff &lt; 0.235 70 97.04 CH ( 0.50000 0.50000 )
+<ol start="24" style="list-style-type: decimal">
+<li>PctDiscMM &lt; 0.196196 51 66.22 CH ( 0.64706 0.35294 ) *</li>
+<li>PctDiscMM &gt; 0.196196 19 12.79 MM ( 0.10526 0.89474 ) *</li>
+</ol></li>
+<li>ListPriceDiff &gt; 0.235 112 80.42 CH ( 0.88393 0.11607 ) *</li>
+<li>LoyalCH &gt; 0.745156 258 97.07 CH ( 0.95349 0.04651 ) *</li>
+</ol></li>
+</ol>
+<p>The terminal node 13, is for <span class="math inline">\(ListPriceDiff &gt; 0.235\)</span> It has 102 observations and it has a deviance of <span class="math inline">\(80.42\)</span>. <span class="math inline">\(88.4%%\)</span> of observations in this branch have a value of ‘CH’ and the remaining <span class="math inline">\(11.6%%\)</span> take the value of MM</p>
+<p><span class="math inline">\((d)\)</span> Create a plot of the tree, and interpret the results.</p>
+<pre class="r"><code>plot(training.tree)
+text(training.tree)</code></pre>
+<p><img src="/post/islr-ch-8_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>The root indicator of the tree is <span class="math inline">\(LoyalCH\)</span>, And it is again an important leaf node in several of the tree branches as an indicator variable for differentiating between CH and MM.</p>
+<p><span class="math inline">\((e)\)</span> Predict the response on the test data, and produce a confusion matrix comparing the test labels to the predicted test labels. What is the test error rate?</p>
+<pre class="r"><code>library(magrittr)
+test.pred &lt;- predict(training.tree, OJ.test, type = &quot;class&quot;)
+prop.table(table(test.pred, OJ.test$Purchase)) %&gt;% round(digits = 3)</code></pre>
+<pre><code>##          
+## test.pred    CH    MM
+##        CH 0.596 0.104
+##        MM 0.044 0.256</code></pre>
+<p>The test error rate is around <span class="math inline">\(23%%\)</span></p>
+<p><span class="math inline">\((f)\)</span> Apply the cv.tree() function to the training set in order to determine the optimal tree size.</p>
+<pre class="r"><code>(cv.training.tree &lt;- cv.tree(training.tree, FUN = prune.misclass))</code></pre>
+<pre><code>## $size
+## [1] 8 7 4 2 1
+## 
+## $dev
+## [1] 150 148 172 172 320
+## 
+## $k
+## [1]  -Inf   0.0   5.0   5.5 160.0
+## 
+## $method
+## [1] &quot;misclass&quot;
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;prune&quot;         &quot;tree.sequence&quot;</code></pre>
+<p><span class="math inline">\((g)\)</span> Produce a plot with tree size on the x-axis and cross-validated classification error rate on the y-axis.</p>
+<pre class="r"><code>ggplot() + 
+  geom_line(aes(x = cv.training.tree$size, y = cv.training.tree$dev)) + 
+  geom_point(aes(x = cv.training.tree$size, y = cv.training.tree$dev), shape = 1, size = 2) +
+  geom_text(aes(x = cv.training.tree$size, y = cv.training.tree$dev, label = cv.training.tree$dev), 
+              nudge_y = 5, nudge_x = .25) +
+  theme_classic() + 
+  xlab(&quot;Tree Size&quot;) + ylab(&quot;CV Classification Error Rate&quot;)</code></pre>
+<p><img src="/post/islr-ch-8_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><span class="math inline">\((h)\)</span> Which tree size corresponds to the lowest cross-validated classification error rate?</p>
+<p>For this sample with <span class="math inline">\(set.seed(2)\)</span> a tree with <span class="math inline">\(size = 7\)</span> have the lowest CV Classification Error Rate.</p>
+<p><span class="math inline">\((i)\)</span> Produce a pruned tree corresponding to the optimal tree size obtained using cross-validation. If cross-validation does not lead to selection of a pruned tree, then create a pruned tree with five terminal nodes.</p>
+<pre class="r"><code>pruned.tree &lt;- prune.misclass(training.tree, best = 7)
+plot(pruned.tree)
+text(pruned.tree)</code></pre>
+<p><img src="/post/islr-ch-8_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><span class="math inline">\((j)\)</span> Compare the training error rates between the pruned and unpruned trees. Which is higher?</p>
+<pre class="r"><code>summary(training.tree)</code></pre>
+<p>Classification tree: tree(formula = Purchase ~ ., data = OJ.train) Variables actually used in tree construction: [1] “LoyalCH” “PriceDiff” “ListPriceDiff” “PctDiscMM”<br />
+Number of terminal nodes: 8 Residual mean deviance: 0.7659 = 606.6 / 792 Misclassification error rate: 0.1675 = 134 / 800</p>
+<pre class="r"><code>summary(pruned.tree)</code></pre>
+<p>Classification tree: snip.tree(tree = training.tree, nodes = 4L) Variables actually used in tree construction: [1] “LoyalCH” “PriceDiff” “ListPriceDiff” “PctDiscMM”<br />
+Number of terminal nodes: 7 Residual mean deviance: 0.7824 = 620.5 / 793 Misclassification error rate: 0.1675 = 134 / 800</p>
+<p>Both Trees have an identical Misclassification error rate of <span class="math inline">\(0.1675\)</span></p>
+<p><span class="math inline">\((k)\)</span> Compare the test error rates between the pruned and unpruned trees. Which is higher?</p>
+<pre class="r"><code>prune.pred &lt;- predict(pruned.tree, OJ.test, type = &quot;class&quot;)
+prop.table(table(prune.pred,OJ.test$Purchase)) %&gt;% round(digits = 3)</code></pre>
+<pre><code>##           
+## prune.pred    CH    MM
+##         CH 0.596 0.104
+##         MM 0.044 0.256</code></pre>
+<pre class="r"><code>prop.table(table(test.pred, OJ.test$Purchase)) %&gt;% round(digits = 3)</code></pre>
+<pre><code>##          
+## test.pred    CH    MM
+##        CH 0.596 0.104
+##        MM 0.044 0.256</code></pre>
+<p>Both have identical error rates and results. We removed one terminal node from the tree and the results were extremely simmilar. The Residual Mean Deviance Changed between the trees but besides that all else remained the same.</p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/homework">homework</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/islr_ch5/">ISLR Chapter 5</a></li>
+        
+        <li><a href="/post/islr_ch4/">ISLR Chapter 4</a></li>
+        
+        <li><a href="/post/islr_ch3/">ISLR Ch 3</a></li>
+        
+        <li><a href="/post/islr_ch2/">ISLR Ch2</a></li>
+        
+        <li><a href="/project/gapminder/">gapminder</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2018 &middot; 
+
+      Powered by the
+      <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+      <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-tOav5w1OjvsSJzePRtt2uQPFwBoHt1VZcUq8l8nm5284LEKE9FSJBQryzMBzHxY5P0zRdNqEcpLIRVYFNgu1jw==" crossorigin="anonymous"></script>
+    
+    
+
+  </body>
+</html>
+

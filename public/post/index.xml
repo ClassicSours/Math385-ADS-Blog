@@ -13,6 +13,17 @@
     
     
     <item>
+      <title>ISLR Chapter 8</title>
+      <link>/post/islr-ch-8/</link>
+      <pubDate>Thu, 19 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/islr-ch-8/</guid>
+      <description>ISLR Ch 8 #5, #7, #9
+\(5\). Suppose we produce ten bootstrapped samples from a data set containing red and green classes. We then apply a classification tree to each bootstrapped sample and, for a specific value of X, produce 10 estimates of \(P (Class is Red|X)\):
+ 0.1, 0.15, 0.2, 0.2, 0.55, 0.6, 0.6, 0.65, 0.7, and 0.75.  There are two common ways to combine these results together into a single class prediction.</description>
+    </item>
+    
+    <item>
       <title>Data Science in the News</title>
       <link>/post/data-science-in-the-news/</link>
       <pubDate>Sun, 01 Apr 2018 00:00:00 +0000</pubDate>
